@@ -1,0 +1,63 @@
+var preview = {
+    props: ['email'],
+    data() {
+        return {
+            showEnvlope: false,
+            // email: email
+        }
+    },
+    template: `
+         <div class="e-email-preview" :class="{unread: !email.isRead}" @click="openEnvlope">
+            <div class="e-email-author">
+            {{email.from}}
+            </div>
+            <div class="e-email-content">
+            {{email.subject}} - <span class="grey">{{shortEmailBody}}</span>
+            </div>
+            <div class="e-email-time">
+                {{Unix_timestamp}}
+            </div>
+            <div class="e-envlope" v-if="showEnvlope">
+                yes
+            </div>
+        </div>
+        
+    `,
+    methods: {
+        selectBook(id) {
+            this.$emit('selectedBook', id);
+
+        },
+        openEnvlope() {
+            // console.log("open", this.email.id)
+            this.showEnvlope=true;
+        }
+    },
+    computed: {
+        Unix_timestamp() {
+            var t = this.email.sentAt;
+            var dt = new Date(t * 1000);
+            var hr = dt.getHours();
+            var m = "0" + dt.getMinutes();
+            var s = "0" + dt.getSeconds();
+            var ampm;
+            if (hr < 12) {
+                ampm = 'AM';
+                hr = '0' + hr;
+            } else ampm = 'PM';
+            return hr + ':' + m.substr(-2) + ' ' + ampm;
+        },
+        shortEmailBody() {
+            var emailBody = this.email.body;
+            if (emailBody.length < 50) {
+                return emailBody;
+            } else {
+                return emailBody.substr(0, 50) + '...'
+            }
+        }
+    },
+    created() {
+    }
+}
+
+export default preview

@@ -14,7 +14,7 @@ const homeCmp = {
 }
 
 const compose = { template: '<div>COMPOSE</div>' }
-const inbox = { template: '<div>inbox</div>' }
+// const inbox = { template: '<div>inbox</div>' }
 
 const routes = [
     { path: '/', component: homeCmp },
