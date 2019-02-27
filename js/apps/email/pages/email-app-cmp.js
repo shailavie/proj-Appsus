@@ -4,8 +4,9 @@ export default {
     template: `
         <section class="e-app">
             <div class="e-sidebar">
-                <button>Compose</button><br/>
-                Inbox <br/>
+            <router-link to="/email/compose"><button>Compose</button></router-link>
+                <br/>
+                <router-link to="/email/">Inbox</router-link> <br/>
                 Starred <br/>
                 Sent Mail<br/>
                 Drafts<br/>
@@ -13,7 +14,7 @@ export default {
             </div>
 
             <div class="e-main-emails">
-                emails
+            <router-view></router-view>
             </div>
         </section> 
     `,
@@ -22,12 +23,12 @@ export default {
         }
     },
     created() {
-        window.document.title='Email App'
+        window.document.title = 'Email App'
     },
     methods: {
     },
     computed: {
-        
+
     },
     components: {
 
