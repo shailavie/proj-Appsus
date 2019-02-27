@@ -1,3 +1,25 @@
 body {
     background-color: lightgreen;
 }
+
+/* EMAIL */
+
+.e-app {
+    background-color: white;
+    display: flex;
+    height: 100vh;
+}
+
+.e-sidebar {
+    background-color: lightblue;
+    flex-basis: 20%;
+    padding:10px;
+}
+
+.e-main-emails {
+    background-color: lightgrey;
+    flex-basis: 80%;
+    padding:10px;
+}
+
+/* END OF EMAIL */
