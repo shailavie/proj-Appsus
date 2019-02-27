@@ -1,35 +1,18 @@
 
-import bookApp from './pages/book-app-cmp.js'
-import bookDetails from './pages/book-details-cmp.js'
+import emailApp from './apps/email/pages/email-app-cmp.js'
+import keepApp from './apps/keep/pages/keep-app-cmp.js'
+// import bookDetails from './pages/book-details-cmp.js'
+// import about from './pages//about-cmp.js'
 
-var aboutCmp = {
-    template: `<section>
-        <h1>About Us</h1>
-        <router-link exact to="/">Go Back Home</router-link>
-        <button @click="sendFeedback">Send Feedback</button>
-        </section>`,
-    methods: {
-        sendFeedback() {
-            console.log('Sedning your Feedback');
-            setTimeout(() => {
-                // this.$router.push('/')
-                this.$router.go(-1)
-            }, 1000)
-        }
-    }
+const homeCmp = {
+    template: `<h1>sarelush</h1>`
 }
 
-
-
-var homeCmp = {
-    template: `<h1>Home</h1>`
-}
 
 const routes = [
     { path: '/', component: homeCmp },
-    { path: '/about', component: aboutCmp },
-    { path: '/book/:bookId', component: bookDetails },
-    { path: '/book-app', component: bookApp },
+    { path: '/email', component: emailApp },
+    { path: '/keep', component: keepApp },
 ]
 
 export default routes;
