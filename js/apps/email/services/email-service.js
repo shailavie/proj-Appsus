@@ -1,7 +1,7 @@
 import utilService from '../services/util-service.js';
 
 export default {
-
+getEmails
 }
 
 function getEmails() {
@@ -10,6 +10,7 @@ function getEmails() {
 
 var gEmails = [
     {
+        id: utilService.makeId(),
         subject: 'Wassap with Vue?',
         body: 'May I',
         isRead: false,

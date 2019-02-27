@@ -4,6 +4,7 @@
 
 
 import emailApp from './apps/email/pages/email-app-cmp.js'
+import emailInbox from './apps/email/pages/email-inbox-cmp.js'
 import keepApp from './apps/keep/pages/keep-app-cmp.js'
 // import bookDetails from './pages/book-details-cmp.js'
 // import about from './pages//about-cmp.js'
@@ -20,7 +21,7 @@ const routes = [
     { path: '/keep', component: keepApp },
     { path: '/email', component: emailApp,
     children: [
-        { path: '', component: inbox },
+        { path: '', component: emailInbox },
         { path: 'compose', component: compose }
       ]
 },
