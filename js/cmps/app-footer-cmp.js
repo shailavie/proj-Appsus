@@ -1,8 +1,8 @@
 
 export default {
     template: `
-        <footer>
-                <h1>Appsus FOOTER!!</h1>
+        <footer class="flex center-all">
+                <h1>wallaYoffiRights &copy; 2019 - Proudly created by Sarel K. and Shai L.</h1>
         </footer> 
     `,components: {
     }

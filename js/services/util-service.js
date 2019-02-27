@@ -1,10 +1,14 @@
 // This Module works with NAMED EXPORTS
 
 export default {
-    getCurrencySymbol,
-    getRandomIntInclusive,
-    makeId,
+    makeId
 }
+
+// export default {
+//     getCurrencySymbol,
+//     getRandomIntInclusive,
+//     makeId,
+// }
 
 export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
