@@ -1,7 +1,7 @@
  
 import util from '../../../services/util-service.js'
 
-var gNotes;
+// var gNotes;
 
 
 export default {
@@ -20,7 +20,9 @@ function getNotes() {
     return Promise.resolve(gNotes)
 }
 
-gNotes = [
+
+
+const gNotes = [
     {
         id : util.makeId(), 
         type : 'txt',
