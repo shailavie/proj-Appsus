@@ -1,0 +1,68 @@
+body {
+    font-family: 'Jura', sans-serif;
+    text-align: center;
+}
+
+header {
+    background-color: beige;
+    font-family: 'Monoton', cursive;
+}
+
+nav {
+    padding:5px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfd255+0,8eb92a+50,72aa00+51,9ecb2d+100;Green+Gloss */
+    background: rgb(191, 210, 85);
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(191, 210, 85, 1) 0%, rgba(142, 185, 42, 1) 50%, rgba(114, 170, 0, 1) 51%, rgba(158, 203, 45, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(191, 210, 85, 1) 0%, rgba(142, 185, 42, 1) 50%, rgba(114, 170, 0, 1) 51%, rgba(158, 203, 45, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(191, 210, 85, 1) 0%, rgba(142, 185, 42, 1) 50%, rgba(114, 170, 0, 1) 51%, rgba(158, 203, 45, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+nav a {
+    color:white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.router-link-active {
+    color: purple;
+}
+
+.logo {
+    font-size: 4em;
+}
+
+h1 {
+    font-family: 'Bangers', cursive;
+}
+
+app {}
+
+.book-app {}
+
+.book-details {
+
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+ul {
+    display: flex;
+    flex: 1 1 160px;
+    list-style: none;
+}
+
+li {
+    flex-flow: row wrap;
+}
