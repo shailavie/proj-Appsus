@@ -23,3 +23,120 @@ body {
 }
 
 /* END OF EMAIL */
+
+.appsus-app {
+    background-color: white;
+    height: 100vh;
+    font-family: 'Roboto'
+}
+
+
+/* Header */
+.app-header {
+    height: 60px;
+    border-bottom: 1px solid darkslategray;
+    border-top: 1px solid darkslategray;
+    padding: 10px 20px;
+}
+.app-header h1 {
+    font-family: 'Roboto';
+    font-size: 30px;
+    padding: 20px;
+    flex-grow: 1;
+}
+.nav-drawer {
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+    background-color: rgb(228, 222, 222);
+    font-size: 20px;
+    position: relative;
+}
+.nav-drawer nav {
+    width: 250px;
+    height: auto;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    border: 1px solid gray;
+    z-index: 1;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    padding: 20px;
+    flex-direction: row;
+    transition: .3s ease;
+}
+.nb-link {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+    height: auto;
+    font-size: 14px;
+    padding: 10px;
+    text-decoration: none;
+    transition: all .8s ease;
+    border: 1px solid transparent;
+}
+.nb-link:hover {
+    border: 1px solid rgb(196, 190, 190);
+}
+.nb-link i{
+    display: flex;
+    flex-direction: column;
+    color: rgb(138, 80, 138);
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.nb-link a {
+    text-decoration: none;
+    text-underline-position: above;
+    color: black;
+}
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+    margin-left: 20px;
+}
+/* a.tip {
+    background-color: rgb(17, 15, 15);
+    color: white;
+    border-radius: 8px;
+}
+ */
+/* 
+.router-link {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .router-link[title]:hover:after {
+    content: attr(title);
+    position: absolute;
+    top: -100%;
+    left: 0;
+  } */
+
+
+/* Footer */
+footer {
+    height: 60px;
+    background-color: white;
+    border-top: 1px solid gray;
+}
+
+
+/* helpers */
+.flex {display: flex;}
+.grid {display: grid;}
+.column {flex-direction: column;}
+.center-all {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.space-between {justify-content: space-between}
+.space-evenly {justify-content: space-evenly}
+.space-around {justify-content: space-around}
+.center-ver {align-items: center;}
+.wrapper{width: 980px;}
