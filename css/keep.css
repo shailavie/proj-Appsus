@@ -1,8 +1,8 @@
 /* Font Face */
-@font-face {
+/* @font-face {
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     src: url(sansation_light.woff);
-  }
+  } */
 
   /* element {
     --main-font-family: brown;
@@ -11,19 +11,84 @@
 .notes-app {
     background-color: lightsalmon;
     flex-grow: 2;
+    /* padding-left: 30px; */
+    padding: 30px;
 }
 
+.notes-to-show {
+    /* display: grid; */
+    /* grid */
+    /* margin: 20px; */
+}
+
+.sexiness {
+    /* background-color: #e0f0ff; */
+    background-color: yellow;
+  }
+
+.sexiness2 {
+    background-color: #e0f0ff;
+    color: black;
+}
+ 
 .note-preview {
     background-color: whitesmoke;
     font-size: 20px;
     font-family: 'Roboto';
-    width: 300px;
-    height: auto;
-    margin: 20px;
+    word-break: break-all;
+    margin-bottom: 30px;
     padding: 20px;
     border-radius: 8px;
     box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: all .3s ease;
     user-select: none;
+}
+
+.note-filter {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.note-filter input {
+    min-width: 300px;
+    height: 15px;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid gray;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Roboto';
+    background-color: rgb(247, 241, 241);
+    transition: .2s linear;
+}
+
+.note-filter input:focus {
+    background-color: white;
+    /* border: 1px solid blue; */
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+.note-preview-snippet p {
+    font-size: 16px; 
+    margin-bottom: 15px;
+}
+.note-preview-snippet h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.note-label-preview {
+    font-size: 16px;
+    background-color: salmon;
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border: 2px solid whitesmoke;
+    padding: 4px 8px;
+    border-radius: 8px;
+    word-break: keep-all;
 }

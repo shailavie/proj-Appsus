@@ -11,7 +11,7 @@ body {
 /* Header */
 
 .app-header {
-    height: 60px;
+    min-height: 60px;
     border-bottom: 1px solid darkslategray;
     border-top: 1px solid darkslategray;
     padding: 10px 20px;
@@ -28,9 +28,12 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50px;
-    background-color: rgb(228, 222, 222);
     font-size: 20px;
     position: relative;
+    transition: .3s ease;
+}
+.nav-drawer:hover {
+    background-color: rgb(222, 222, 222);
 }
 
 .nav-drawer nav {
@@ -232,3 +235,8 @@ footer {
 }
 
 /* END OF EMAIL */
+.space-between {justify-content: space-between}
+.space-evenly {justify-content: space-evenly}
+.space-around {justify-content: space-around}
+.center-ver {align-items: center;}
+/* .wrapper{width: 980px;} */

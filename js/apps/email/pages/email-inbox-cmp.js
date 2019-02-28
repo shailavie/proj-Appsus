@@ -10,7 +10,7 @@ export default {
             emails: [],
             filterBy: {},
             selecedId: 0,
-            showDeta    ils: false,
+            showDetails: false,
             selectedEmail: null
         }
     },

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AppSus</title>
     <link rel="stylesheet" href="css/reset.css">
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/keep.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="icon" href="img/icon.ico" type="image/gif" sizes="16x16">
 </head>
+
 <body>
-    <div id="app" class="appsus-app flex column"> 
+    <div id="app" class="appsus-app flex column">
         <app-header></app-header>
         <router-view></router-view>
         <app-footer></app-footer>
@@ -21,6 +22,9 @@
 
     <script src="lib/vue.js"></script>
     <script src="lib/vue-router.js"></script>
+    <script src="https://unpkg.com/vue-masonry-css"></script>
     <script type="module" src="js/main.js"></script>
+
 </body>
+
 </html>
