@@ -29,7 +29,7 @@ const gNotes = [
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
-        labels : ['cool', 'pretty', 'gorgeous'],
+        labels : ['cool', 'pretty', 'smart'],
         data : {
             subject : 'Keren',
             body : '052-8985898',
@@ -49,7 +49,38 @@ const gNotes = [
             And be one traveler, long I stood
             And looked down one as far as I could
             To where it bent in the undergrowth
+
+
+            Two roads diverged in a yellow wood, 
+            And sorry I could not travel both
+            And be one traveler, long I stood
+            And looked down one as far as I could
+            To where it bent in the undergrowth
+
+            Two roads diverged in a yellow wood, 
+            And sorry I could not travel both
+            And be one traveler, long I stood
+            And looked down one as far as I could
+            To where it bent in the undergrowth
+
+            Two roads diverged in a yellow wood, 
+            And sorry I could not travel both
+            And be one traveler, long I stood
+            And looked down one as far as I could
+            To where it bent in the undergrowth
             `,
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'txt',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['NaN'],
+        data : {
+            subject : 'My favorite number',
+            body : '',
         }
     },
     {
@@ -62,18 +93,6 @@ const gNotes = [
         data : {
             subject : 'Cool App',
             body : 'https://shailavie.github.io/proj-Appsus ght',
-        }
-    },
-    {
-        id : util.makeId(),
-        type : 'txt',
-        isPinned : false,
-        dateCreated : new Date(),
-        bgColor : 'white',
-        labels : ['meh', 'puki', 'NaN'],
-        data : {
-            subject : 'Nice course',
-            body : 'https://www.coding-academy.org/landing2/',
         }
     },
     {
@@ -108,8 +127,21 @@ const gNotes = [
         bgColor : 'white',
         labels : ['cool', 'enjoyable', 'happy'],
         data : {
-            subject : 'Nice course',
-            body : 'Sed maxime harum repellat aperiam animi, vitae aliquid reprehenderit aliquam qui autem.',
+            subject : '',
+            body : `Sed maxime harum repellat aperiam animi, 
+            vitae aliquid reprehenderit aliquam qui autem.
+            Two roads diverged in a yellow wood, 
+            And sorry I could not travel both
+            And be one traveler, long I stood
+            And looked down one as far as I could
+            To where it bent in the undergrowth
+
+            Two roads diverged in a yellow wood, 
+            And sorry I could not travel both
+            And be one traveler, long I stood
+            And looked down one as far as I could
+            To where it bent in the undergrowth
+            `,
         }
     },
     {
@@ -118,7 +150,7 @@ const gNotes = [
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
-        labels : ['css', 'Asi', 'html'],
+        labels : ['css', 'Asi', 'Sawsan4Life','התחלנו'],
         data : {
             subject : 'Nice course',
             body : 'https://www.coding-academy.org/landing2/',

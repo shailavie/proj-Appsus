@@ -6,8 +6,8 @@ import notePreview from './note-preview-cmp.js';
 export default {
     template: `
            <masonry 
-           :cols="{default: 4, 1000: 3, 700: 2, 400: 1}" 
-           :gutter="{default: '30px', 700: '15px'}"
+           :cols="{default: 4, 1000: 3, 700: 2, 500: 1}" 
+           :gutter="{default: '20px', 700: '15px'}"
            >
                 <div 
                     :to="'/note/' + currNote.id" 

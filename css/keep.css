@@ -74,6 +74,11 @@
 .note-preview-snippet p {
     font-size: 16px; 
     margin-bottom: 15px;
+    /* word-break: break-all; */
+}
+
+.note-preview-snippet pre {
+    word-break: keep-all; 
 }
 .note-preview-snippet h3 {
     font-size: 18px;

@@ -16,12 +16,14 @@ export default {
                     </h3>
                     <!-- <h3>{{note.data.subject}} </h3> -->
                     <p>
+                        <!-- <pre> -->
                         <highlight   
                                 :msg="note.data.body" 
                                 :search="search" 
                                 effect="sexiness" >  
                         {{note.data.body}}
                         </highlight>
+                        <!-- </pre> -->
                     </p>
                     <span 
                         v-for="(label, idx) in note.labels" 
