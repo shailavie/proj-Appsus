@@ -8,8 +8,8 @@ export default {
                 v-for="(currEmail, idx) in emails">
                     <email-preview
                     :email="currEmail" 
-                    @selectedEmail="showEmail"
                     :idx="idx+1" 
+                    @click.native="showEmail(currEmail)"
                     :key="currEmail.id">
                 </email-preview>
                 </li>
@@ -24,8 +24,8 @@ export default {
         window.document.title = 'Email App'
     },
     methods: {
-        showEmail(id) {
-            this.$emit('selectedEmail', id);
+        showEmail(email) {
+            this.$emit('selectedEmail', email);
         }
     },
     computed: {
