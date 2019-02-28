@@ -61,7 +61,7 @@ const gNotes = [
         labels : ['so cool', 'wow', 'number1'],
         data : {
             subject : 'Cool App',
-            body : 'https://shailavie.github.io/proj-Appsus/',
+            body : 'https://shailavie.github.io/proj-Appsus ght',
         }
     },
     {

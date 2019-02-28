@@ -17,7 +17,7 @@ export default {
                     <!-- <h3>{{note.data.subject}} </h3> -->
                     <p>
                         <highlight   
-                                :msg="note.data.subject" 
+                                :msg="note.data.body" 
                                 :search="search" 
                                 effect="sexiness" >  
                         {{note.data.body}}
