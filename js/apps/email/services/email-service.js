@@ -1,8 +1,9 @@
 import utilService from '../services/util-service.js';
 
 export default {
-getEmails,
-getEmailById
+    getEmails,
+    getEmailById,
+    addEmail
 }
 
 function getEmails() {
@@ -15,6 +16,23 @@ function getEmailById(id) {
         return id === email.id
     })
     return Promise.resolve(email);
+}
+
+function createEmail(subject, body) {
+    return {
+        id: utilService.makeId(),
+        name: "Me",
+        from: 'me@gmail.com',
+        to: 'Me',
+        subject,
+        body,
+        isRead: false,
+        sentAt: Date.now()
+    }
+}
+
+function addEmail(subject, body) {
+    gEmails.push(createEmail(subject, body));
 }
 
 var gEmails = [

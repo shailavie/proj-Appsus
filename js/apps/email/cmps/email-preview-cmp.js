@@ -7,7 +7,7 @@ var preview = {
     },
     template: `
     <div>
-         <div class="e-email-preview" :class="{unread: !email.isRead}" @click="toggleEnvlope" @selectedEmail="selectEmail">
+         <div class="e-email-preview" :class="{unread: !email.isRead}" @click="toggleEnvlope">
             <div class="e-email-author">
             {{email.name}}
             </div>
@@ -35,9 +35,6 @@ var preview = {
         
     `,
     methods: {
-        selectEmail(id) {
-            this.$emit('selectedEmail', id);
-        },
         toggleEnvlope() {
             var isShow = this.showEnvlope;
             if (!isShow) {
@@ -45,7 +42,6 @@ var preview = {
             } else {
                 this.showEnvlope=false;
             }
-            console.log("open", this.email.id)
         },
         openMailNewWindow() {
             window.location="email/"+this.email.id;
