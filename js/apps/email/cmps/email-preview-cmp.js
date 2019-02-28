@@ -44,7 +44,7 @@ var preview = {
             }
         },
         openMailNewWindow() {
-            window.location="email/"+this.email.id;
+            window.location="index.html#/email/"+this.email.id;
         }
     },
     computed: {

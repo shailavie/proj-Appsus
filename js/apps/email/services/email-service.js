@@ -11,7 +11,6 @@ function getEmails() {
 }
 
 function getEmailById(id) {
-
     var email = gEmails.find(function (email) {
         return id === email.id
     })
@@ -32,7 +31,7 @@ function createEmail(subject, body) {
 }
 
 function addEmail(subject, body) {
-    gEmails.push(createEmail(subject, body));
+    gEmails.unshift(createEmail(subject, body));
 }
 
 var gEmails = [
