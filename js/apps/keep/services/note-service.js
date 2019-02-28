@@ -19,10 +19,10 @@ function getNoteById(noteId) {
 }
 
 function _getNoteIdxByNote(note) {
-    let idx = gNotes.findIndex(function (item) {
+    return gNotes.findIndex(function (item) {
         return note.id === item.id
     })
-    return Promise.resolve(idx)
+    // return Promise.resolve(idx)
 }
 
 function addNewNote(newNote){
@@ -31,6 +31,7 @@ function addNewNote(newNote){
 }
 
 function deleteNote(note){
+    console.log('service deletes ',note)
     let noteIdx = _getNoteIdxByNote(note)
     gNotes.splice(noteIdx,1)
     return Promise.resolve(gNotes)

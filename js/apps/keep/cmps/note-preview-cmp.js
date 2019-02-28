@@ -39,7 +39,7 @@ export default {
                 </div>
                 <!-- <div class="note-controls"> </div>-->
                 <div class="note-controls-placeholder">
-                    <note-controls :note="note" @pinnote="pinNote(note)" @deleteNote="deleteNote(note)" v-show="showControls" ></note-controls>
+                    <note-controls :note="note" @pinNote="pinNote(note)" @deleteNote="deleteNote(note)" v-show="showControls" ></note-controls>
                 </div>
             </div>
     `,

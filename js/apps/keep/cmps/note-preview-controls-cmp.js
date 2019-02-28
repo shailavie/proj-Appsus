@@ -9,12 +9,12 @@ export default {
         `,
     methods: {
         deleteNote(note){
-            console.log('deleting this note',note)
-            this.$emit('deletenote',note)
+            console.log('preview request:  delete this note',note)
+            this.$emit('deleteNote',note)
         },
         pinNote(note){
             console.log('pin this note',note)
-            this.$emit('pinnote',note)
+            this.$emit('pinNote',note)
         }
     }
 }
