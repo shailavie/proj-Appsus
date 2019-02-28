@@ -1,17 +1,27 @@
 import utilService from '../services/util-service.js';
 
 export default {
-getEmails
+getEmails,
+getEmailById
 }
 
 function getEmails() {
     return Promise.resolve(gEmails);
 }
 
+function getEmailById(id) {
+
+    var email = gEmails.find(function (email) {
+        return id === email.id
+    })
+    return Promise.resolve(email);
+}
+
 var gEmails = [
     {
         id: utilService.makeId(),
-        from: "Moshe@gmail.com",
+        name: "Moshe",
+        from: "Moshe23123@gmail.com",
         to: "Me",
         subject: 'Wassap with Vue?',
         body: 'bla bla bla bla bla bla blab lablabl abla blabalbaa aaa sssss',
@@ -20,7 +30,8 @@ var gEmails = [
     },
     {
         id: utilService.makeId(),
-        from: "Anna@gmail.com",
+        name: "Anna",
+        from: "Anna2012@gmail.com",
         to: "Me",
         subject: 'Hello',
         body: 'lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum ',
@@ -29,7 +40,8 @@ var gEmails = [
     },
     {
         id: utilService.makeId(),
-        from: "Haim@gmail.com",
+        name: "Haim",
+        from: "thecoolestmailever@gmail.com",
         to: "Me",
         subject: 'Wassap with Vue?',
         body: 'May I',

@@ -3,13 +3,13 @@ var preview = {
     data() {
         return {
             showEnvlope: false,
-            // email: email
         }
     },
     template: `
-         <div class="e-email-preview" :class="{unread: !email.isRead}" @click="openEnvlope">
+    <div>
+         <div class="e-email-preview" :class="{unread: !email.isRead}" @click="toggleEnvlope" @selectedEmail="selectEmail">
             <div class="e-email-author">
-            {{email.from}}
+            {{email.name}}
             </div>
             <div class="e-email-content">
             {{email.subject}} - <span class="grey">{{shortEmailBody}}</span>
@@ -17,20 +17,38 @@ var preview = {
             <div class="e-email-time">
                 {{Unix_timestamp}}
             </div>
-            <div class="e-envlope" v-if="showEnvlope">
-                yes
-            </div>
         </div>
+                <div class="e-envlope" v-if="showEnvlope">
+                    <div class="e-envlope-details">
+                    <h1>{{email.subject}}</h1>
+                    <span class="unread">{{email.name}}</span>
+                    <span class="grey">&nbsp;<{{email.from}}></span>
+                    </div>
+                    <div class="e-envlope-buttons">
+                        <button><i class="fas fa-trash"></i></button>
+                        <button @click="openMailNewWindow"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="e-envlope-body" v-if="showEnvlope">{{email.body}}</div>
+                <hr/>
+</div>
         
     `,
     methods: {
-        selectBook(id) {
-            this.$emit('selectedBook', id);
-
+        selectEmail(id) {
+            this.$emit('selectedEmail', id);
         },
-        openEnvlope() {
-            // console.log("open", this.email.id)
-            this.showEnvlope=true;
+        toggleEnvlope() {
+            var isShow = this.showEnvlope;
+            if (!isShow) {
+                this.showEnvlope=true;
+            } else {
+                this.showEnvlope=false;
+            }
+            console.log("open", this.email.id)
+        },
+        openMailNewWindow() {
+            window.location="email/"+this.email.id;
         }
     },
     computed: {

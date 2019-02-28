@@ -1,4 +1,3 @@
-// import emailService from '../services/email-service.js';
 import emailPreview from '../cmps/email-preview-cmp.js';
 
 export default {
@@ -7,15 +6,12 @@ export default {
     <ul>
                 <li :key="currEmail.id"
                 v-for="(currEmail, idx) in emails">
-                <!-- <router-link -->
-                    <!-- :to="'/email/' + currEmail.id" > -->
                     <email-preview
                     :email="currEmail" 
                     @selectedEmail="showEmail"
                     :idx="idx+1" 
                     :key="currEmail.id">
                 </email-preview>
-                <!-- </router-link> -->
                 </li>
 
             </ul>
