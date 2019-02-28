@@ -29,7 +29,7 @@ const gNotes = [
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
-        labels : [],
+        labels : ['cool', 'pretty', 'gorgeous'],
         data : {
             subject : 'Keren',
             body : '052-8985898',
@@ -41,7 +41,7 @@ const gNotes = [
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
-        labels : [],
+        labels : ['serendipity'],
         data : {
             subject : 'The Road Not Taken',
             body : `Two roads diverged in a yellow wood, 
@@ -58,7 +58,7 @@ const gNotes = [
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
-        labels : [],
+        labels : ['so cool', 'wow', 'number1'],
         data : {
             subject : 'Cool App',
             body : 'https://shailavie.github.io/proj-Appsus/',
@@ -70,7 +70,55 @@ const gNotes = [
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
+        labels : ['meh', 'puki', 'NaN'],
+        data : {
+            subject : 'Nice course',
+            body : 'https://www.coding-academy.org/landing2/',
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'txt',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
         labels : [],
+        data : {
+            subject : 'Don\'t forget!',
+            body : 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id modi facere adipisci incidunt impedit voluptatibus nostrum, velit ad!',
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'txt',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['react?', 'What?', 'WOW'],
+        data : {
+            subject : 'Check this out',
+            body : 'https://vuejs.org/',
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'txt',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['cool', 'enjoyable', 'happy'],
+        data : {
+            subject : 'Nice course',
+            body : 'Sed maxime harum repellat aperiam animi, vitae aliquid reprehenderit aliquam qui autem.',
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'txt',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['css', 'Asi', 'html'],
         data : {
             subject : 'Nice course',
             body : 'https://www.coding-academy.org/landing2/',

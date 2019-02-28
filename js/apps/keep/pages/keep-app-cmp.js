@@ -3,20 +3,20 @@ import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 
 export default {
-    template:`
-    <section class="notes-app flex center-all"> 
-        <!-- maybe this componenet wants to be grid -->
+    template: `
+    <section class="notes-app"> 
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
-        <note-list :notes="notesToShow"></note-list>
+        <note-list class="notes-to-show masonry" :notes="notesToShow" :search="searchTerm"></note-list>
     </section>
     `,
     data() {
         return {
             notes: [],
             filterBy: {
-                subject: '',
+                txt: '',
             },
-            selectedNotes: []
+            selectedNotes: [],
+            searchTerm : ''
         }
     },
     created() {
@@ -27,24 +27,28 @@ export default {
     },
     methods: {
         setFilter(filterBy) {
-            console.log('noteApp Got Filter: ', filterBy);
-            this.filterBy.subject = filterBy.subject;
-            // this.filterBy.price = filterBy.price;co
-            // this.filterBy.currency = filterBy.currency;
+            // console.log('noteApp Got Filter: ', filterBy);
+            this.filterBy.txt = filterBy.txt;
         },
         getNote(note) {
             this.selectedNote = note
-            console.log('selected note: ',this.selectedNote)
+            // console.log('selected note: ',this.selectedNote)
         },
     },
     computed: {
         notesToShow() {
+            this.searchTerm = this.filterBy.txt.toLowerCase()
             return this.notes.filter(note => {
-                return note.data.subject.toLowerCase().includes(this.filterBy.subject.toLowerCase())
-                    // && note.listPrice.amount >= this.filterBy.price[0] 
-                    // && note.listPrice.amount <= this.filterBy.price[1] 
-                    // && note.listPrice.currencyCode === this.filterBy.currency
+                return note.data.subject.toLowerCase().includes(this.searchTerm)
+                    || note.data.body.toLowerCase().includes(this.searchTerm)
+                    || note.labels.join('').toLowerCase().includes(this.searchTerm)
             })
+            // console.log(res)
+            // for (let i = 0; i < res.length; i++) {
+            //     console.log(res[i].data.subject.replace(searchTerm, 'POTATO'))
+            // }
+            // res
+             //[0].data.subject.replace(searchTerm,'bla')
         },
     },
     components: {
