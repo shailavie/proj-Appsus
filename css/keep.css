@@ -9,10 +9,10 @@
   } */
 
 .notes-app {
-    background-color: lightsalmon;
+    background-color: tomato;
     flex-grow: 2;
     /* padding-left: 30px; */
-    padding: 30px;
+    padding: 20px;
 }
 
 .notes-to-show {
@@ -36,14 +36,33 @@
     font-size: 20px;
     font-family: 'Roboto';
     word-break: break-all;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition: all .3s ease;
     user-select: none;
+    transition: .3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    padding-bottom: 50px;
 }
+.note-preview:hover {
+    border: 1px solid black;
+}
+
+/* .note-preview:hover::before {
+    content: 'x';
+    position: absolute;
+    top: 5;
+    left: 5;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+} */
+
+
 
 .note-filter {
     position: absolute;
@@ -73,7 +92,7 @@
 
 .note-preview-snippet p {
     font-size: 16px; 
-    margin-bottom: 15px;
+    margin-bottom: 35px;
     /* word-break: break-all; */
 }
 
@@ -87,13 +106,70 @@
 }
 
 .note-label-preview {
-    font-size: 16px;
-    background-color: salmon;
+    font-size: 14px;
+    background-color: rgb(87, 81, 81);
+    opacity: .5;
     color: white;
-    margin-right: 10px;
+    margin-right: 5px;
     margin-bottom: 5px;
     border: 2px solid whitesmoke;
-    padding: 4px 8px;
-    border-radius: 8px;
+    padding: 6px 10px;
+    border-radius: 18px;
     word-break: keep-all;
 }
+
+.labels-container {
+    /* width: 200px;
+    height: 200px; */
+    display: inline-block;
+}
+
+
+.btn {
+    width: auto;
+    height: 60px;
+    background-color: rgb(180, 68, 180);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 30px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    padding: 10px 40px;
+    transition: .3s ease;
+    outline: none;
+}
+
+.btn:hover {
+    background-color: rgb(199, 108, 199);
+}
+
+.note-controls-placeholder {
+    height: 40px;
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.87);
+    border-top: 1px solid lightgray;
+    border-radius: 0 0 8px 8px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+}
+.note-controllers-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+    color: gray
+}
+
+.note-controllers-container i{
+    transition: .3s ease;
+}
+.note-controllers-container i:hover{
+    color:black
+}
+.note-controllers-container .fa-trash:hover{
+    transform: rotate(23deg)
+}
+

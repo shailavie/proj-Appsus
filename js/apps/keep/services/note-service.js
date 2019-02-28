@@ -5,21 +5,45 @@ import util from '../../../services/util-service.js'
 
 
 export default {
-    getNotes
+    getNotes,
+    addNewNote,
+    deleteNote,
+    togglePinNote
 } 
 
-function getNoteById(bookId) {
+function getNoteById(noteId) {
     var note = gNotes.find(function (note) {
-        return bookId === note.id
+        return noteId === note.id
     })
     return Promise.resolve(note)
 }
 
+function _getNoteIdxByNote(note) {
+    let idx = gNotes.findIndex(function (item) {
+        return note.id === item.id
+    })
+    return Promise.resolve(idx)
+}
+
+function addNewNote(newNote){
+    gNotes.unshift(newNote)
+    return Promise.resolve(gNotes)
+}
+
+function deleteNote(note){
+    let noteIdx = _getNoteIdxByNote(note)
+    gNotes.splice(noteIdx,1)
+    return Promise.resolve(gNotes)
+}
 
 function getNotes() {
     return Promise.resolve(gNotes)
 }
 
+function togglePinNote(note){
+    note.isPinned = !note.isPinned;
+    return Promise.resolve(gNotes)
+}
 
 
 const gNotes = [
@@ -49,7 +73,6 @@ const gNotes = [
             And be one traveler, long I stood
             And looked down one as far as I could
             To where it bent in the undergrowth
-
 
             Two roads diverged in a yellow wood, 
             And sorry I could not travel both

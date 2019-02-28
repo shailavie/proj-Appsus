@@ -7,7 +7,7 @@ export default {
     template: `
            <masonry 
            :cols="{default: 4, 1000: 3, 700: 2, 500: 1}" 
-           :gutter="{default: '20px', 700: '15px'}"
+           :gutter="{default: '20px', 700: '20px'}"
            >
                 <div 
                     :to="'/note/' + currNote.id" 
@@ -28,6 +28,7 @@ export default {
     props: ['notes','search'],
     methods: {
         selectNote(note) {
+            console.log(note,'is selected!')
             this.$emit('selected', note)
         }
     },
