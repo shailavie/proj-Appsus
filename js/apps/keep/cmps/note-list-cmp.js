@@ -4,16 +4,17 @@
 import notePreview from './note-preview-cmp.js';
 
 export default {
+    props: ['notes','search'],
     template: `
            <masonry 
-           :cols="{default: 4, 1000: 3, 700: 2, 500: 1}" 
+           :cols="{default: 5, 1500 :4, 1000: 3, 700: 2, 500: 1}" 
            :gutter="{default: '20px', 700: '20px'}"
            >
-           <transition-group tag="div" class="note-list" name="fade"
-                    :to="'/note/' + currNote.id" 
+           <transition-group tag="div"  name="fade"
                     v-for="(currNote, idx) in notes" 
-               
-                    :note="currNote">
+                    :key="idx"
+                    :note="currNote"
+                    >
                     
                     <note-preview 
                         class="masonry-brick" 
@@ -26,7 +27,6 @@ export default {
             </transition-group>
             </masonry>
     `,
-    props: ['notes','search'],
     methods: {
         selectNote(note) {
             console.log(note,'is selected!')

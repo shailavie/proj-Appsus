@@ -8,7 +8,7 @@ export default {
     getNotes,
     addNewNote,
     deleteNote,
-    togglePinNote
+    togglePinNote,
 } 
 
 function getNoteById(noteId) {
@@ -24,6 +24,10 @@ function _getNoteIdxByNote(note) {
     })
     // return Promise.resolve(idx)
 }
+
+// function changeColor(note,color){
+//     note.
+// }
 
 function addNewNote(newNote){
     gNotes.unshift(newNote)

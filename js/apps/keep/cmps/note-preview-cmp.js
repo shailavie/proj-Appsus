@@ -9,7 +9,7 @@ import noteService from '../services/note-service.js';
 export default {
     props: ['note', 'idx','search'],
     template: `
-            <div class="note-preview" @mouseover="showControls = true" @mouseout="showControls = false">
+            <div :style="getBgColor" class="note-preview" @mouseover="showControls = true" @mouseout="showControls = false">
                 <div class="note-preview-snippet">
                     <h3>
                         <highlight 
@@ -39,7 +39,13 @@ export default {
                 </div>
                 <!-- <div class="note-controls"> </div>-->
                 <div class="note-controls-placeholder">
-                    <note-controls :note="note" @pinNote="pinNote(note)" @deleteNote="deleteNote(note)" v-show="showControls" ></note-controls>
+                    <note-controls 
+                        :note="note" 
+                        v-show="showControls" 
+                        @pinNote="pinNote(note)" 
+                        @changeColor="changeColor" 
+                        @deleteNote="deleteNote(note)" 
+                        ></note-controls>
                 </div>
             </div>
     `,
@@ -56,9 +62,19 @@ export default {
         pinNote(note){
             console.log('got request to pin', note)
             noteService.togglePinNote(note)
-        }
+        },
+        changeColor(color){
+            console.log('lets2 change color!',color)
+            this.$emit('changeColor',color)
+            // noteService.changeColor(note,color)
+            this.note.bgColor = color
+        },
+        
     },
     computed: {
+        getBgColor(){
+            return {'backgroundColor' : this.note.bgColor}
+        }
     },
     components:{
         labels,
