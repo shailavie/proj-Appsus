@@ -10,7 +10,7 @@ import emailDetails from './apps/email/pages/email-details-cmp.js'
 import keepApp from './apps/keep/pages/keep-app-cmp.js'
 
 const homeCmp = {
-    template: `<h1> Welcome to Appsus</h1>`
+    template: `<h1> Welcome to Appsus. Choose youre App</h1>`
 }
 
 const compose = { template: '<div>COMPOSE</div>' }
