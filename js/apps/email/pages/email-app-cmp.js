@@ -5,12 +5,12 @@ export default {
         <section class="e-app">
             <div class="e-sidebar">
             <router-link to="/email/compose"><button>Compose</button></router-link>
-                <br/>
-                <router-link to="/email/">Inbox</router-link> <br/>
-                Starred <br/>
-                Sent Mail<br/>
-                Drafts<br/>
-                Progress Bar
+                
+                <router-link to="/email/">Inbox</router-link> 
+                <div>Starred</div>
+                <div>Sent Mail</div>
+                <div>Drafts</div>
+                <div>Progress Bar</div>
             </div>
 
             <div class="e-main-emails">
