@@ -15,6 +15,14 @@
     padding: 20px;
 }
 
+.notes-app h4 {
+    color: white;
+    margin: 20px;
+    font-family: 'Roboto';
+    font-weight: 200;
+    font-size: 16x;
+}
+
 .notes-to-show {
     /* display: grid; */
     /* grid */
@@ -173,3 +181,28 @@
     transform: rotate(23deg)
 }
 
+.fade-enter-active, .fade-leave-active {
+    /* transition: opacity .9s ease; */
+    transform: translate(-10px 0);
+    transition: all .8s ease;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transition: all .8s ease;
+  }
+
+  .masonry-brick {
+      /* transition: .8s ease; */
+  }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
