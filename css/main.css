@@ -272,7 +272,7 @@ footer {
     padding:10px;
 }
 
-form {
+.e-form {
     flex-grow: 1;
     max-width: 100%;
     border: 1px solid black;
@@ -288,14 +288,14 @@ form {
     margin-top:7px;
 }
 
-textarea {
+.e-textarea {
     min-width: 98%;
     height: 280px;
     resize: none;
     border: 0px solid black;
 }
 
-textarea:focus, input:focus{
+.e-textarea:focus, input:focus{
     outline: none;
 }
 

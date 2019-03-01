@@ -32,7 +32,7 @@ export default {
         `,
     data(){
         return {
-            colors:['CornflowerBlue','yellow','green','LightGoldenRodYellow','tomato','orange','salmon','pink'],
+            colors:['CornflowerBlue','yellow','orange','PaleGreen','LightGoldenRodYellow','tomato','LightGray','LightPink','white'],
             showColorPicker:false
         }
     },

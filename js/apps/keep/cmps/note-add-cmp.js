@@ -1,13 +1,4 @@
 
-// export default {
-//     props:[],
-//     template: `
-//     <section>
-        
-//     </section>
-//     `
-// }
-
 
 import { makeId } from '../../../services/util-service.js';
 // import { eventBus } from './event-bus.js'
@@ -16,10 +7,10 @@ const textBox = {
     props: ['data'],
     template: `
         <div class="row">
-            <label>
-                {{data.label}}
-                <input type="text" v-model="txt" @blur="reportVal" />
-            </label>
+            <!-- <label>
+                {{data.label}} -->
+                <input type="text" v-model="txt" :placeholder=data.label @blur="reportVal" class='add-note-textBox'/>
+            <!-- </label> -->
         </div>
     `,
     data() {
@@ -37,10 +28,10 @@ const textArea = {
     props: ['data'],
     template: `
         <div class="row">
-            <label>
-                {{data.label}}
-                <textarea type="text" v-model="textArea" @blur="reportVal" ></textarea> 
-            </label>
+            <!-- <label>
+                {{data.label}} -->
+                <textarea type="text" v-model="textArea" :placeholder=data.label @blur="reportVal" class='add-note-textArea' ref="note-input-to-focus"></textarea> 
+            <!-- </label> -->
         </div>
     `,
     data() {
@@ -77,12 +68,13 @@ const selectBox = {
         }
     }
 }
- 
+
 
 export default {
     template: `
+    <div class="overlayer">
     <section class="note-add">
-    <form @submit.prevent="saveNewNote">
+    <form @submit.prevent="saveNewNote" class="note-add-form" @keyup.tab.prevent @keyup.esc="hideAddNote">
             <component v-for="(currCmp, idx) in cmps" 
                         class="add-note-field  flex   space-between"
                         :is="currCmp.type" 
@@ -90,9 +82,11 @@ export default {
                         :key="currCmp.id"
                         @setInput="setInput($event, idx)">
             </component>
-            <button type="submit" class="btn">Save Note</button>
+            <button type="submit" class="save-note-btn" @click.stop="hideAddNote">Save</button>
+            <button class="close-btn" @click.stop.prevent="hideAddNote"><i class="fas fa-times"></i></button>
         </form>
     </section>
+    </div>
     `,
     data() {
         return {
@@ -101,9 +95,9 @@ export default {
                     id: makeId(),
                     type: 'textBox',
                     data: {
-                        label: 'Subject',
+                        label: 'Title',
                         for: 'subject',
-                        class: 'add-note-field flex center-all space-between',
+                        myClass: 'add-note-textBox',
                     }
                 },
                 {
@@ -112,7 +106,7 @@ export default {
                     data: {
                         label: 'Take a note',
                         for: 'body',
-                        class: 'add-note-field flex center-all space-between',
+                        myClass: 'add-note-textArea',
                     }
                 },
                
@@ -121,6 +115,12 @@ export default {
         }
     },
     methods: {
+        hideAddNote(){
+            console.log('closing modal');
+            setTimeout(() => {
+                this.$emit('hideAddNote')
+            }, 10);
+        },
         setInput(ans, inputIdx) {
             this.answers.splice(inputIdx, 1, ans);
             console.log('Survey Got ev', ans);

@@ -3,14 +3,20 @@ import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import addNote from '../cmps/note-add-cmp.js'
 
-
+// line 14
 export default {
     template: `
     <section class="notes-app"> 
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
 
-        <button @click="toggleAddNote" v-if="!showAddNote" class="btn">Add a New Note</button>
-        <add-note v-if="showAddNote" @newnote="addNote"></add-note>
+        <div class="add-note-container flex center-all">
+            <input @click="toggleAddNote" placeholder="Take a note" v-if="!showAddNote" class="take-a-note" > 
+            <add-note 
+                v-show="showAddNote"
+                @hideAddNote="hideAddNote"
+                @newnote="addNote">
+            </add-note>
+        </div>
         <div v-if="pinnedNotesCount.length > 0">
             <h4>PINNED</h4>
             <note-list class="notes-to-show" :notes="pinnedNotesToShow" :search="searchTerm"></note-list>
@@ -39,6 +45,9 @@ export default {
             .then(notes => this.notes = notes)
     },
     methods: {
+        hideAddNote(){
+           this.showAddNote = false; 
+        },
         setFilter(filterBy) {
             // console.log('noteApp Got Filter: ', filterBy);
             this.filterBy.txt = filterBy.txt;

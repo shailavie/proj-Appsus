@@ -1,19 +1,19 @@
 import highlight from './note-preview-highligh-cmp.js'
 
 export default {
-    props: ['label','search'],
+    props: ['label', 'search'],
     template: `
             <div class="note-label-preview"  >
             <highlight   
                     :msg="label" 
                     :search="search" 
-                    effect="sexiness2" >  
+                    effect="sexiness" >  
             </highlight>
             </div>
             `,
-    methods: {    
+    methods: {
     },
-    components:{
+    components: {
         highlight
     }
 }

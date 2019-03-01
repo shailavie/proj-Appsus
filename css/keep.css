@@ -79,8 +79,9 @@
     transform: translate(-50%, 0);
 }
 
-.note-filter input {
-    min-width: 300px;
+.input-filter-by-text {
+    min-width: 100px;
+    width: auto;
     height: 15px;
     border-radius: 8px;
     padding: 20px;
@@ -92,7 +93,8 @@
     transition: .2s linear;
 }
 
-.note-filter input:focus {
+
+.input-filter-by-text:focus {
     background-color: white;
     /* border: 1px solid blue; */
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
@@ -115,13 +117,12 @@
 
 .note-label-preview {
     font-size: 14px;
-    background-color: rgb(87, 81, 81);
-    opacity: .5;
-    color: white;
+    background-color: rgb(87, 81, 81 ,15%);
+    color: black;
     margin-right: 5px;
     margin-bottom: 5px;
     border: 2px solid whitesmoke;
-    padding: 6px 10px;
+    padding: 8px 10px;
     border-radius: 18px;
     word-break: keep-all;
 }
@@ -223,7 +224,7 @@
   }
 
   .color-picker {
-      width: 60%;
+      width: 40%;
       height: auto;
       background-color: whitesmoke;
       position: absolute;
@@ -236,6 +237,8 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      text-align: center;
+      justify-content: center;
   }
 
   .color-circle {
@@ -243,5 +246,123 @@
       height: 30px;
       border-radius: 50px;
       margin: 3px;
-      /* border:1px solid lightgray; */
+      border:1px solid black;
+  }
+
+  .note-add {
+      background-color: whitesmoke;
+      width: 60%;
+      height: auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
+      transition-duration: .8s ease;
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 15%;
+      transform: translate(-50%,0);
+  }
+
+  .add-note-field {
+      /* background-color: red; */
+  }
+
+  .add-note-textBox {
+    background-color:transparent;
+    border: none;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    outline: none
+  }
+
+  .add-note-textBox:focus  .add-note-textArea:focus {
+      outline: none;
+  }
+
+  .add-note-textArea {
+    background-color:transparent;
+    border: none;
+    font-size: 1.3em;
+    height: 100px;
+    outline: none;
+    width: 100%;
+  }
+
+  .note-add-form {
+      position: relative;
+  }
+
+  
+.btn {
+    width: auto;
+    height: 60px;
+    padding: 10px 40px;
+    background-color: rgb(180, 68, 180);
+
+    margin: 30px;
+
+}
+
+  .save-note-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: auto;
+      height: 40px;
+      padding: 10px 20px;
+      color: black;
+      background-color: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: .3s ease;
+      font-family: 'Roboto';
+      outline: none;
+      border:none;
+  }
+
+  .save-note-btn:hover {
+    background-color: lightgray;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+  }
+
+  .take-a-note {
+      /* position: absolute; */
+      transition: .3s ease;
+      min-width: 60%;
+      height: auto;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid gray;
+      outline: none;
+      font-size: 16px;
+      font-family: 'Roboto';
+      /* background-color: rgb(247, 241, 241); */
+      transition: .2s linear;
+  }
+
+  .add-note-container {
+      height: 80px;
+  }
+
+  .overlayer {
+      height: 200vh;
+      background-color: rgb(8, 8, 8 ,80%);
+      z-index: 1;
+      box-sizing: border-box;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      margin-top: calc(-50vh + 50%);
+      margin-bottom: calc(-50vw + 50%);
   }
