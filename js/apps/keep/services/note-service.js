@@ -1,8 +1,6 @@
  
 import util from '../../../services/util-service.js'
 
-// var gNotes;
-
 
 export default {
     getNotes,
@@ -24,10 +22,6 @@ function _getNoteIdxByNote(note) {
     })
     // return Promise.resolve(idx)
 }
-
-// function changeColor(note,color){
-//     note.
-// }
 
 function addNewNote(newNote){
     gNotes.unshift(newNote)
@@ -54,7 +48,7 @@ function togglePinNote(note){
 const gNotes = [
     {
         id : util.makeId(), 
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -65,8 +59,21 @@ const gNotes = [
         }
     },
     {
+        id : util.makeId(), 
+        type : 'noteImg',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['not sure', 'Fry', 'Futurama'],
+        data : {
+            subject : 'Fry not sure',
+            body : '052-8985898',
+            src : 'https://i.kym-cdn.com/entries/icons/mobile/000/006/026/NOTSUREIF.jpg'
+        }
+    },
+    {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -101,7 +108,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -113,7 +120,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -125,7 +132,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -137,7 +144,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -149,7 +156,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -174,7 +181,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -184,6 +191,18 @@ const gNotes = [
             body : 'https://www.coding-academy.org/landing2/',
         }
     },
- 
+    {
+        id : util.makeId(), 
+        type : 'noteVid',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['sample', 'video', 'lego'],
+        data : {
+            subject : 'Sample video',
+            body : 'how cool is that!',
+            src : 'http://techslides.com/demos/sample-videos/small.mp4'
+        }
+    },
     
 ]

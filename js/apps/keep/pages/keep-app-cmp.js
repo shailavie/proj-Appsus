@@ -3,10 +3,11 @@ import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import addNote from '../cmps/note-add-cmp.js'
 
-// line 14
 export default {
     template: `
     <section class="notes-app"> 
+        <!-- <input type="file" accept="image/*" @change="openFile($event)">
+        <img id='output' style="height:100px; width:100px;"> -->
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
 
         <div class="add-note-container flex center-all">
@@ -34,8 +35,11 @@ export default {
                 txt: '',
             },
             selectedNotes: [],
-            searchTerm : '',
+            searchTerm: '',
             showAddNote: false,
+            showImgPrev: false,
+            imgUrl: null,
+            // openFile: null,
         }
     },
     created() {
@@ -45,8 +49,18 @@ export default {
             .then(notes => this.notes = notes)
     },
     methods: {
-        hideAddNote(){
-           this.showAddNote = false; 
+        openFile(file) {
+            var input = file.target;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var dataURL = reader.result;
+                var output = document.getElementById('output');
+                output.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        },
+        hideAddNote() {
+            this.showAddNote = false;
         },
         setFilter(filterBy) {
             // console.log('noteApp Got Filter: ', filterBy);
@@ -56,11 +70,11 @@ export default {
             this.selectedNote = note
             // console.log('selected note: ',this.selectedNote)
         },
-        toggleAddNote(){
-            this.showAddNote = !this.showAddNote;         
+        toggleAddNote() {
+            this.showAddNote = !this.showAddNote;
         },
-        addNote(newNote){
-            console.log('kawabanga!',newNote)
+        addNote(newNote) {
+            console.log('kawabanga!', newNote)
             noteService.addNewNote(newNote)
         }
     },
@@ -69,26 +83,26 @@ export default {
             this.searchTerm = this.filterBy.txt.toLowerCase()
             return this.notes.filter(note => {
                 return (
-                       note.data.subject.toLowerCase().includes(this.searchTerm)
+                    note.data.subject.toLowerCase().includes(this.searchTerm)
                     || note.data.body.toLowerCase().includes(this.searchTerm)
                     || note.labels.join('').toLowerCase().includes(this.searchTerm)
-                ) &&   !note.isPinned
+                ) && !note.isPinned
             })
         },
         pinnedNotesToShow() {
             this.searchTerm = this.filterBy.txt.toLowerCase()
             return this.notes.filter(note => {
                 return (
-                       note.data.subject.toLowerCase().includes(this.searchTerm)
+                    note.data.subject.toLowerCase().includes(this.searchTerm)
                     || note.data.body.toLowerCase().includes(this.searchTerm)
                     || note.labels.join('').toLowerCase().includes(this.searchTerm)
-                ) &&   note.isPinned
+                ) && note.isPinned
             })
         },
-        pinnedNotesCount(){
+        pinnedNotesCount() {
             return this.notes.filter(note => note.isPinned)
         },
-        unPinnedNotesCount(){
+        unPinnedNotesCount() {
             return this.notes.filter(note => !note.isPinned)
         }
     },

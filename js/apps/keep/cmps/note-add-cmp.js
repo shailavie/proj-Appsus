@@ -1,50 +1,9 @@
 
-
 import { makeId } from '../../../services/util-service.js';
-// import { eventBus } from './event-bus.js'
+import textArea from './dynamic-cmp/form-textarea-cmp.js';
+import textBox from './dynamic-cmp/form-textbox-cmp.js';
 
-const textBox = {
-    props: ['data'],
-    template: `
-        <div class="row">
-            <!-- <label>
-                {{data.label}} -->
-                <input type="text" v-model="txt" :placeholder=data.label @blur="reportVal" class='add-note-textBox'/>
-            <!-- </label> -->
-        </div>
-    `,
-    data() {
-        return {
-            txt: '',
-        }
-    },
-    methods: {
-        reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.txt })
-        }
-    }
-}
-const textArea = {
-    props: ['data'],
-    template: `
-        <div class="row">
-            <!-- <label>
-                {{data.label}} -->
-                <textarea type="text" v-model="textArea" :placeholder=data.label @blur="reportVal" class='add-note-textArea' ref="note-input-to-focus"></textarea> 
-            <!-- </label> -->
-        </div>
-    `,
-    data() {
-        return {
-            textArea: '',
-        }
-    },
-    methods: {
-        reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.textArea })
-        }
-    }
-}
+ 
 const selectBox = {
     props: ['data'],
     template: `
