@@ -30,7 +30,7 @@ var preview = {
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
                 </div>
-                <div class="e-envlope-body" v-if="showEnvlope">{{email.body}}</div>
+                <div class="e-envlope-body" v-if="showEnvlope"><pre>{{email.body}}</pre></div>
                 <hr/>
 </div>
         

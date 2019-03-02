@@ -1,3 +1,4 @@
+import utilService from '../services/util-service.js';
 import emailService from '../services/email-service.js';
 
 export default {
@@ -29,7 +30,7 @@ export default {
     },
     created() {
         const emailId = this.$route.params;
-        if (emailId) {
+        if (!utilService.isEmpty(emailId)) {
             emailService.getEmailById(emailId.emailId)
                 .then(email => {
                     this.email = email;

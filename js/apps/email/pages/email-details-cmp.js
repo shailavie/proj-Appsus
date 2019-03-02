@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         reaplyMail() {
-
+                window.location = "index.html#/email/compose/" + this.email.id;
         },
         deleteEmail(email) {
             emailService.deleteEmail(email);

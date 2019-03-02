@@ -1,4 +1,7 @@
 import utilService from '../services/util-service.js';
+import storageService from '../services/storage-service.js';
+
+const EMAILS_KEY = 'emails';
 
 export default {
     getEmails,
@@ -8,6 +11,12 @@ export default {
 }
 
 function getEmails() {
+    var emails= storageService.loadFromStorage(EMAILS_KEY);
+    if (!emails || emails.length === 0) {
+        storageService.saveToStorage(EMAILS_KEY, gEmails);
+    } else {
+        gEmails = emails
+    }
     return Promise.resolve(gEmails);
 }
 
@@ -39,11 +48,13 @@ function createEmail(subject, body) {
 
 function addEmail(subject, body) {
     gEmails.unshift(createEmail(subject, body));
+    storageService.saveToStorage(EMAILS_KEY, gEmails);
 }
 
 function deleteEmail(email){
     let emailIdx = _getEmailIdxByEmail(email)
     gEmails.splice(emailIdx,1)
+    storageService.saveToStorage(EMAILS_KEY, gEmails);
     return Promise.resolve(gEmails)
 }
 

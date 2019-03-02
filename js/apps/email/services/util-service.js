@@ -2,7 +2,8 @@
 
 export default {
     getRandomIntInclusive,
-    makeId
+    makeId,
+    isEmpty
 }
 
 export function getRandomIntInclusive(min, max) {
@@ -21,4 +22,12 @@ export function makeId() {
     }
 
     return txt;
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
 }
