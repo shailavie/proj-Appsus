@@ -1,16 +1,17 @@
-
+import localStorageService from '../services/local-storage-service.js'
 // TO DO - MAKE THE LIST WORKS WITH DYNAMIC COMPONENTS
 
-import notePreview from './note-preview-cmp.js';
+// import notePreview from './note-preview-cmp.js';
 import noteTxt from './dynamic-cmp/note-txt-cmp.js'
 import noteImg from './dynamic-cmp/note-img-cmp.js'
 import noteVid from './dynamic-cmp/note-vid-cmp.js'
+import noteAud from './dynamic-cmp/note-aud-cmp.js'
 
 export default {
     props: ['notes','search'],
     template: `
            <masonry 
-           :cols="{default: 6, 1500 :4, 1000: 3, 700: 2, 500: 1}" 
+           :cols="{default: 5, 1500 :4, 1000: 3, 700: 2, 500: 1}" 
            :gutter="{default: '20px', 700: '20px'}"
            >
                     <component 
@@ -36,10 +37,11 @@ export default {
         console.log('got :',this.search)
     },
     components: {
-        notePreview,
+        localStorageService,
         noteTxt,
         noteImg,
-        noteVid
+        noteVid,
+        noteAud
     }
 }
 

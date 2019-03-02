@@ -32,6 +32,7 @@ function deleteNote(note){
     console.log('service deletes ',note)
     let noteIdx = _getNoteIdxByNote(note)
     gNotes.splice(noteIdx,1)
+    localStorage.setItem('gNotes',JSON.stringify(gNotes))
     return Promise.resolve(gNotes)
 }
 
@@ -116,6 +117,19 @@ const gNotes = [
         data : {
             subject : 'My favorite number',
             body : '',
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'noteAud',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['rick and morty',],
+        data : {
+            subject : 'Get your shit together',
+            body : 'get all your shit, so its together',
+            src : 'https://www.myinstants.com/media/sounds/getyourshit_full_lowquality.mp3',
         }
     },
     {
@@ -206,3 +220,4 @@ const gNotes = [
     },
     
 ]
+

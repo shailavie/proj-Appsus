@@ -3,13 +3,17 @@
 const colorPicker = {
     props:['colors'],
     template:`
-    <div class="color-picker" >
+    <div class="color-picker" @mouseleave="hideColorPicker" >
         <div v-for="(color) in colors" :key="color">
-            <div class="color-circle" :style="getClass(color)" @click.stop="changeColor(color)"></div>
+            <div class="color-circle" :style="getClass(color)" @click.stop="changeColor(color)" ></div>
         </div>
     </div>
     `,
     methods:{
+        hideColorPicker(){
+            console.log('yalla sogrim')
+            this.$emit('hideColorPicker')
+        },
         changeColor(color){
             console.log('lets change color!',color)
             this.$emit('changeColor',color)
@@ -25,9 +29,9 @@ export default {
     template:`
         <div class="note-controllers-container">
             <i class="fas fa-thumbtack" :title="pinTitle" @click.stop="pinNote(note)"></i>
-            <i class="fas fa-palette" title="Change color" @click.stop="showColorPicker=!showColorPicker"></i>
+            <i class="fas fa-palette" title="Change color" @mouseover="showColorPicker=!showColorPicker" ></i>
             <i class="fas fa-trash" title="Delete note" @click.stop="deleteNote(note)"></i>
-            <color-picker v-if="showColorPicker" @changeColor="changeColor" :colors="colors"></color-picker>
+            <color-picker v-if="showColorPicker" @changeColor="changeColor" :colors="colors" @hideColorPicker="hideColorPicker"></color-picker>
         </div>
         `,
     data(){
@@ -37,6 +41,10 @@ export default {
         }
     },
     methods: {
+        hideColorPicker(){
+            console.log('copy that')
+            this.showColorPicker = false;
+        },
         deleteNote(note){
             console.log('preview request:  delete this note',note)
             this.$emit('deleteNote',note)
@@ -57,5 +65,8 @@ export default {
     },
     components:{
         colorPicker
-    }
+    },
+    // destroyed(){
+    //     this.showColorPicker = false;
+    // }
 }

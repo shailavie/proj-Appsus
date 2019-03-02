@@ -2,12 +2,12 @@ import noteService from '../services/note-service.js'
 import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import addNote from '../cmps/note-add-cmp.js'
+import localStorageService from '../services/local-storage-service.js';
 
 export default {
     template: `
     <section class="notes-app"> 
-        <!-- <input type="file" accept="image/*" @change="openFile($event)">
-        <img id='output' style="height:100px; width:100px;"> -->
+    
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
 
         <div class="add-note-container flex center-all">
@@ -43,22 +43,18 @@ export default {
         }
     },
     created() {
-        console.log('fetching notes')
         document.title = 'Keep it'
-        noteService.getNotes()
-            .then(notes => this.notes = notes)
+        if (localStorage.gNotes) {
+            console.log('fetching notes from local storage')
+            localStorageService.loadFromLocalStorage('gNotes')
+                .then(notes => this.notes = JSON.parse(notes))
+        } else {
+            console.log('fetching notes from dummy data')
+            noteService.getNotes()
+                .then(notes => this.notes = notes)
+        }
     },
     methods: {
-        openFile(file) {
-            var input = file.target;
-            var reader = new FileReader();
-            reader.onload = function () {
-                var dataURL = reader.result;
-                var output = document.getElementById('output');
-                output.src = dataURL;
-            };
-            reader.readAsDataURL(input.files[0]);
-        },
         hideAddNote() {
             this.showAddNote = false;
         },
@@ -76,6 +72,8 @@ export default {
         addNote(newNote) {
             console.log('kawabanga!', newNote)
             noteService.addNewNote(newNote)
+                .then(gNotes => localStorageService.saveToLocalStorage('gNotes',JSON.stringify(gNotes)))
+
         }
     },
     computed: {
