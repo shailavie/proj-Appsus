@@ -11,7 +11,8 @@ export default {
                     :idx="idx+1" 
                     @click.native="showEmail(currEmail)"
                     :key="currEmail.id"
-                    @emailToDelete="emailToDelete(currEmail)">
+                    @emailToDelete="emailToDelete(currEmail)"
+                    @unread=markAsUnread(currEmail)>
                 </email-preview>
                 </li>
 
@@ -30,6 +31,9 @@ export default {
         },
         emailToDelete(email) {
             this.$emit('deleteEmail', email);
+        },
+        markAsUnread(email) {
+            this.$emit('unreadEmail', email)
         }
     },
     computed: {

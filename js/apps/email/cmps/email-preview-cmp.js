@@ -27,6 +27,7 @@ var preview = {
                     <div class="e-envlope-buttons">
                         <button title="Delete Email" @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
                         <button title="Open Email" @click="openMailNewWindow"><i class="fas fa-expand"></i></button>
+                        <button title="Mark As Unread" @click="markAsUnread"><i class="fas fa-envelope"></i></button>
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
                 </div>
@@ -49,6 +50,9 @@ var preview = {
         },
         deleteEmail(email) {
             this.$emit('emailToDelete', email)
+        },
+        markAsUnread(email) {
+            this.$emit('unread', email)
         },
         reaplyMail() {
             window.location = "index.html#/email/compose/" + this.email.id;
