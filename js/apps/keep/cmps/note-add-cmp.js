@@ -1,59 +1,10 @@
 
-// export default {
-//     props:[],
-//     template: `
-//     <section>
-        
-//     </section>
-//     `
-// }
-
-
 import { makeId } from '../../../services/util-service.js';
-// import { eventBus } from './event-bus.js'
+import localStorageService from '../services/local-storage-service.js'
+import textArea from './dynamic-cmp/form-textarea-cmp.js';
+import textBox from './dynamic-cmp/form-textbox-cmp.js';
 
-const textBox = {
-    props: ['data'],
-    template: `
-        <div class="row">
-            <label>
-                {{data.label}}
-                <input type="text" v-model="txt" @blur="reportVal" />
-            </label>
-        </div>
-    `,
-    data() {
-        return {
-            txt: '',
-        }
-    },
-    methods: {
-        reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.txt })
-        }
-    }
-}
-const textArea = {
-    props: ['data'],
-    template: `
-        <div class="row">
-            <label>
-                {{data.label}}
-                <textarea type="text" v-model="textArea" @blur="reportVal" ></textarea> 
-            </label>
-        </div>
-    `,
-    data() {
-        return {
-            textArea: '',
-        }
-    },
-    methods: {
-        reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.textArea })
-        }
-    }
-}
+
 const selectBox = {
     props: ['data'],
     template: `
@@ -77,12 +28,13 @@ const selectBox = {
         }
     }
 }
- 
+
 
 export default {
     template: `
+    <div class="overlayer">
     <section class="note-add">
-    <form @submit.prevent="saveNewNote">
+    <form @submit.prevent="saveNewNote" class="note-add-form" @keyup.tab.prevent @keyup.esc="hideAddNote">
             <component v-for="(currCmp, idx) in cmps" 
                         class="add-note-field  flex   space-between"
                         :is="currCmp.type" 
@@ -90,20 +42,27 @@ export default {
                         :key="currCmp.id"
                         @setInput="setInput($event, idx)">
             </component>
-            <button type="submit" class="btn">Save Note</button>
+            <input type="file" accept="image/*" @change="openFile($event)">
+            <img id='output' v-if="showImg" style="height:100px; width:100px;">
+            <button type="submit" class="save-note-btn" @click.stop="hideAddNote">Save</button>
+            <button class="close-btn" @click.stop.prevent="hideAddNote"><i class="fas fa-times"></i></button>
         </form>
     </section>
+    </div>
     `,
     data() {
         return {
+            showImg: false,
+            noteType: 'noteTxt',
+            imgUrl: null,
             cmps: [
                 {
                     id: makeId(),
                     type: 'textBox',
                     data: {
-                        label: 'Subject',
+                        label: 'Title',
                         for: 'subject',
-                        class: 'add-note-field flex center-all space-between',
+                        myClass: 'add-note-textBox',
                     }
                 },
                 {
@@ -112,15 +71,36 @@ export default {
                     data: {
                         label: 'Take a note',
                         for: 'body',
-                        class: 'add-note-field flex center-all space-between',
+                        myClass: 'add-note-textArea',
                     }
                 },
-               
+
             ],
             answers: []
         }
     },
     methods: {
+        openFile(file) {
+            var input = file.target;
+            var reader = new FileReader();
+            var dataUrl;
+            reader.onload = function () {
+                dataUrl = reader.result;
+                localStorageService.saveToLocalStorage('imgUrl', dataUrl)
+                .then(res =>  {this.imgUrl = res})
+                var output = document.getElementById('output');
+                output.src = dataUrl;
+            };
+            reader.readAsDataURL(input.files[0]);
+            this.noteType = 'noteImg'
+            this.showImg = true;
+        },
+        hideAddNote() {
+            console.log('closing modal');
+            setTimeout(() => {
+                this.$emit('hideAddNote')
+            }, 10);
+        },
         setInput(ans, inputIdx) {
             this.answers.splice(inputIdx, 1, ans);
             console.log('Survey Got ev', ans);
@@ -128,21 +108,23 @@ export default {
         saveNewNote() {
             console.log('Survey Answers', this.answers);
             let newNote = {
-                id : makeId(), 
-                type : 'txt',
-                isPinned : false,
-                dateCreated : new Date(),
-                bgColor : 'white',
-                labels : [],
-                data : {
-                    subject : '',
-                    body : '',
+                id: makeId(),
+                type: this.noteType,
+                isPinned: false,
+                dateCreated: new Date(),
+                bgColor: 'white',
+                labels: [],
+                data: {
+                    subject: '',
+                    body: '',
+                    src: '',
                 }
             }
             this.answers.forEach(answer => {
                 if (answer.subject) newNote.data.subject = answer.subject
                 if (answer.body) newNote.data.body = answer.body
             });
+            localStorageService.loadFromLocalStorage('imgUrl').then(res => newNote.data.src=res)
             console.log('Huston we have a new note: ', newNote)
             this.$emit('newnote', newNote)
         }
@@ -154,6 +136,7 @@ export default {
         textBox,
         selectBox,
         textArea,
+        localStorageService
     }
 }
 

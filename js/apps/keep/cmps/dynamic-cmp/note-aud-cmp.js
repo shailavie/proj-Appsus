@@ -1,14 +1,17 @@
 // import noteFilterCmp from "./note-filter-cmp";
-import labels from './note-preview-labels-cmp.js'
-import highlight from './note-preview-highligh-cmp.js'
-import noteControls from './note-preview-controls-cmp.js'
-import noteService from '../services/note-service.js'
- 
+import labels from '../note-preview-labels-cmp.js'
+import highlight from '../note-preview-highligh-cmp.js'
+import noteControls from '../note-preview-controls-cmp.js'
+import noteService from '../../services/note-service.js'; // TO DO - eventbus so that only the page will talk to service
 
+{/* <source src="https://www.myinstants.com/media/sounds/getyourshit_full_lowquality.mp3" > */}
+ 
 export default {
     props: ['note', 'idx','search'],
     template: `
             <div :style="getBgColor" class="note-preview" @mouseover="showControls = true" @mouseout="showControls = false">
+                <audio  class="note-aud" :src="note.data.src"  controls>
+                </audio>
                 <div class="note-preview-snippet">
                     <h3>
                         <highlight 

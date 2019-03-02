@@ -1,14 +1,17 @@
 // import noteFilterCmp from "./note-filter-cmp";
-import labels from './note-preview-labels-cmp.js'
-import highlight from './note-preview-highligh-cmp.js'
-import noteControls from './note-preview-controls-cmp.js'
-import noteService from '../services/note-service.js'
- 
+import labels from '../note-preview-labels-cmp.js'
+import highlight from '../note-preview-highligh-cmp.js'
+import noteControls from '../note-preview-controls-cmp.js'
+import noteService from '../../services/note-service.js'; // TO DO - eventbus so that only the page will talk to service
 
+ 
 export default {
     props: ['note', 'idx','search'],
     template: `
             <div :style="getBgColor" class="note-preview" @mouseover="showControls = true" @mouseout="showControls = false">
+                <video width="320" height="240" :src="note.data.src" class="note-vid" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                </video>
                 <div class="note-preview-snippet">
                     <h3>
                         <highlight 

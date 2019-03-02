@@ -1,8 +1,6 @@
  
 import util from '../../../services/util-service.js'
 
-// var gNotes;
-
 
 export default {
     getNotes,
@@ -25,10 +23,6 @@ function _getNoteIdxByNote(note) {
     // return Promise.resolve(idx)
 }
 
-// function changeColor(note,color){
-//     note.
-// }
-
 function addNewNote(newNote){
     gNotes.unshift(newNote)
     return Promise.resolve(gNotes)
@@ -38,6 +32,7 @@ function deleteNote(note){
     console.log('service deletes ',note)
     let noteIdx = _getNoteIdxByNote(note)
     gNotes.splice(noteIdx,1)
+    localStorage.setItem('gNotes',JSON.stringify(gNotes))
     return Promise.resolve(gNotes)
 }
 
@@ -54,7 +49,7 @@ function togglePinNote(note){
 const gNotes = [
     {
         id : util.makeId(), 
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -65,8 +60,21 @@ const gNotes = [
         }
     },
     {
+        id : util.makeId(), 
+        type : 'noteImg',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['not sure', 'Fry', 'Futurama'],
+        data : {
+            subject : 'Fry not sure',
+            body : '052-8985898',
+            src : 'https://i.kym-cdn.com/entries/icons/mobile/000/006/026/NOTSUREIF.jpg'
+        }
+    },
+    {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -101,7 +109,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -113,7 +121,20 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteAud',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['rick and morty',],
+        data : {
+            subject : 'Get your shit together',
+            body : 'get all your shit, so its together',
+            src : 'https://www.myinstants.com/media/sounds/getyourshit_full_lowquality.mp3',
+        }
+    },
+    {
+        id : util.makeId(),
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -125,7 +146,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -137,7 +158,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -149,7 +170,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -174,7 +195,7 @@ const gNotes = [
     },
     {
         id : util.makeId(),
-        type : 'txt',
+        type : 'noteTxt',
         isPinned : false,
         dateCreated : new Date(),
         bgColor : 'white',
@@ -184,6 +205,19 @@ const gNotes = [
             body : 'https://www.coding-academy.org/landing2/',
         }
     },
- 
+    {
+        id : util.makeId(), 
+        type : 'noteVid',
+        isPinned : false,
+        dateCreated : new Date(),
+        bgColor : 'white',
+        labels : ['sample', 'video', 'lego'],
+        data : {
+            subject : 'Sample video',
+            body : 'how cool is that!',
+            src : 'http://techslides.com/demos/sample-videos/small.mp4'
+        }
+    },
     
 ]
+

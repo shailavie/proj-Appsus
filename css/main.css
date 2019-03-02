@@ -87,6 +87,8 @@ body {
     height: 48px;
     border-radius: 50px;
     margin-left: 20px;
+    object-fit: contain;
+    border: 1px solid rgb(7, 6, 6, 0.3);
 }
 
 /* a.tip {
@@ -279,7 +281,7 @@ button:hover {
     padding: 10px;
 }
 
-form {
+.e-form {
     flex-grow: 1;
     max-width: 100%;
     border: 1px solid black;
@@ -295,7 +297,7 @@ form {
     margin-top: 7px;
 }
 
-textarea {
+.e-textarea {
     min-width: 98%;
     height: 280px;
     resize: none;
