@@ -3,7 +3,7 @@ import emailList from '../cmps/email-list-cmp.js';
 
 export default {
     template: `
-            <email-list :emails="emailsToShow" @selectedEmail="showEmail"></email-list>
+            <email-list :emails="emailsToShow" @selectedEmail="showEmail" @deleteEmail="deleteEmail"></email-list>
     `,
     data() {
         return {
@@ -20,6 +20,9 @@ export default {
     methods: {
         showEmail(email) {
             email.isRead=true;
+        },
+        deleteEmail(email) {
+            emailService.deleteEmail(email);
         }
     },
     computed: {

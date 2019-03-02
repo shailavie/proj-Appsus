@@ -25,8 +25,9 @@ var preview = {
                     <span class="grey">&nbsp;<{{email.from}}></span>
                     </div>
                     <div class="e-envlope-buttons">
-                        <button><i class="fas fa-trash"></i></button>
-                        <button @click="openMailNewWindow"><i class="fas fa-expand"></i></button>
+                        <button title="Delete Email" @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
+                        <button title="Open Email" @click="openMailNewWindow"><i class="fas fa-expand"></i></button>
+                        <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
                 </div>
                 <div class="e-envlope-body" v-if="showEnvlope">{{email.body}}</div>
@@ -38,13 +39,19 @@ var preview = {
         toggleEnvlope() {
             var isShow = this.showEnvlope;
             if (!isShow) {
-                this.showEnvlope=true;
+                this.showEnvlope = true;
             } else {
-                this.showEnvlope=false;
+                this.showEnvlope = false;
             }
         },
         openMailNewWindow() {
-            window.location="index.html#/email/"+this.email.id;
+            window.location = "index.html#/email/" + this.email.id;
+        },
+        deleteEmail(email) {
+            this.$emit('emailToDelete', email)
+        },
+        reaplyMail() {
+
         }
     },
     computed: {
@@ -57,7 +64,7 @@ var preview = {
             var ampm;
             if (hr < 12) {
                 ampm = 'AM';
-                hr = '0' + hr;
+                if (hr < 10) hr = '0' + hr;
             } else ampm = 'PM';
             return hr + ':' + m.substr(-2) + ' ' + ampm;
         },

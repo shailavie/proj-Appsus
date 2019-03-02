@@ -9,8 +9,8 @@ export default {
                     <span class="grey">&nbsp;<{{email.from}}></span>
                     </div>
                     <div class="e-envlope-buttons">
-                        <button><i class="fas fa-trash"></i></button>
-                        <button @click="reaplyMail"><i class="fas fa-expand"></i></button>
+                        <button @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
+                        <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
                     <div class="e-envlope-body">{{email.body}}</div>
                 </div>
@@ -31,6 +31,10 @@ export default {
     methods: {
         reaplyMail() {
 
+        },
+        deleteEmail(email) {
+            emailService.deleteEmail(email);
+            window.location="index.html#/email/";
         }
 
     },

@@ -11,10 +11,14 @@ export default {
 
         <button @click="toggleAddNote" v-if="!showAddNote" class="btn">Add a New Note</button>
         <add-note v-if="showAddNote" @newnote="addNote"></add-note>
-        PINNED
-        <note-list class="notes-to-show" :notes="pinnedNotesToShow" :search="searchTerm"></note-list>
-        OTHERS
-        <note-list class="notes-to-show" :notes="notesToShow" :search="searchTerm"></note-list>
+        <div v-if="pinnedNotesCount.length > 0">
+            <h4>PINNED</h4>
+            <note-list class="notes-to-show" :notes="pinnedNotesToShow" :search="searchTerm"></note-list>
+        </div>
+        <div v-if="unPinnedNotesCount.length > 0">
+            <h4>OTHERS</h4>
+            <note-list class="notes-to-show" :notes="notesToShow" :search="searchTerm"></note-list>
+        </div>
     </section>
     `,
     data() {
@@ -25,7 +29,7 @@ export default {
             },
             selectedNotes: [],
             searchTerm : '',
-            showAddNote: false
+            showAddNote: false,
         }
     },
     created() {
@@ -72,6 +76,12 @@ export default {
                 ) &&   note.isPinned
             })
         },
+        pinnedNotesCount(){
+            return this.notes.filter(note => note.isPinned)
+        },
+        unPinnedNotesCount(){
+            return this.notes.filter(note => !note.isPinned)
+        }
     },
     components: {
         noteService,

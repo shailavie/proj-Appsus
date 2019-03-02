@@ -13,19 +13,18 @@ const homeCmp = {
     template: `<h1> Welcome to Appsus. Choose youre App</h1>`
 }
 
-const compose = { template: '<div>COMPOSE</div>' }
-// const inbox = { template: '<div>inbox</div>' }
-
 const routes = [
     { path: '/', component: homeCmp },
     { path: '/keep', component: keepApp },
-    { path: '/email', component: emailApp,
-    children: [
-        { path: '', component: emailInbox },
-        { path: 'compose', component: emailCompose },
-        { path: ':emailId', component: emailDetails },
-      ]
-},
+    {
+        path: '/email', component: emailApp,
+        children: [
+            { path: '', component: emailInbox },
+            { path: 'compose', component: emailCompose, children: 
+                [{ path: ':emailId', component: emailCompose }] },
+            { path: ':emailId', component: emailDetails },
+        ]
+    },
 ]
 
 export default routes;

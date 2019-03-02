@@ -10,7 +10,8 @@ export default {
                     :email="currEmail" 
                     :idx="idx+1" 
                     @click.native="showEmail(currEmail)"
-                    :key="currEmail.id">
+                    :key="currEmail.id"
+                    @emailToDelete="emailToDelete(currEmail)">
                 </email-preview>
                 </li>
 
@@ -26,6 +27,9 @@ export default {
     methods: {
         showEmail(email) {
             this.$emit('selectedEmail', email);
+        },
+        emailToDelete(email) {
+            this.$emit('deleteEmail', email);
         }
     },
     computed: {

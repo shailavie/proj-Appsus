@@ -27,7 +27,8 @@ export default {
         }
     },
     created() {
-
+        const emailId = this.$route.params;
+        console.log(emailId)
     },
     methods: {
         sendEmail() {

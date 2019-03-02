@@ -3,7 +3,8 @@ import utilService from '../services/util-service.js';
 export default {
     getEmails,
     getEmailById,
-    addEmail
+    addEmail,
+    deleteEmail
 }
 
 function getEmails() {
@@ -15,6 +16,12 @@ function getEmailById(id) {
         return id === email.id
     })
     return Promise.resolve(email);
+}
+
+function _getEmailIdxByEmail(email) {
+    return gEmails.findIndex(function (item) {
+        return email.id === item.id
+    })
 }
 
 function createEmail(subject, body) {
@@ -32,6 +39,12 @@ function createEmail(subject, body) {
 
 function addEmail(subject, body) {
     gEmails.unshift(createEmail(subject, body));
+}
+
+function deleteEmail(email){
+    let emailIdx = _getEmailIdxByEmail(email)
+    gEmails.splice(emailIdx,1)
+    return Promise.resolve(gEmails)
 }
 
 var gEmails = [
