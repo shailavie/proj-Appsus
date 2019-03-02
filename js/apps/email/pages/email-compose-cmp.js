@@ -19,21 +19,30 @@ export default {
     `,
     data() {
         return {
-            to:'',
-            cc:'',
-            bcc:'',
-            subject:'',
-            body:''
+            to: '',
+            cc: '',
+            bcc: '',
+            subject: '',
+            body: '',
+            email: null
         }
     },
     created() {
         const emailId = this.$route.params;
-        console.log(emailId)
+        if (emailId) {
+            emailService.getEmailById(emailId.emailId)
+                .then(email => {
+                    this.email = email;
+                    this.subject = 'Re: '+this.email.subject;
+                    this.to = this.email.to;
+                    this.body = '\n__________________________\n'+this.email.body;
+                })
+        }
     },
     methods: {
         sendEmail() {
             emailService.addEmail(this.subject, this.body);
-            window.location="index.html#/email/";
+            window.location = "index.html#/email/";
         }
 
     },

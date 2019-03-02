@@ -51,7 +51,7 @@ var preview = {
             this.$emit('emailToDelete', email)
         },
         reaplyMail() {
-
+            window.location = "index.html#/email/compose/" + this.email.id;
         }
     },
     computed: {

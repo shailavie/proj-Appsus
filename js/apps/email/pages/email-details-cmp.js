@@ -12,7 +12,7 @@ export default {
                         <button @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
-                    <div class="e-envlope-body">{{email.body}}</div>
+                    <div class="e-envlope-body"><pre>{{email.body}}</pre></div>
                 </div>
     `,
     data() {
@@ -27,6 +27,7 @@ export default {
             .then(email => {
                 this.email = email
             })
+            console.log(emailId)
     },
     methods: {
         reaplyMail() {
