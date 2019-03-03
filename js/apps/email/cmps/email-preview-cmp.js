@@ -31,7 +31,7 @@ var preview = {
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
                 </div>
-                <div class="e-envlope-body" v-if="showEnvlope"><pre>{{email.body}}</pre></div>
+                <div class="e-envlope-body" v-if="showEnvlope" style="white-space: pre;">{{email.body}}</div>
                 <hr/>
 </div>
         
@@ -61,28 +61,17 @@ var preview = {
     },
     computed: {
         Unix_timestamp() {
-            var t = this.email.sentAt;
-            var dt = new Date(t * 1000);
-            var hr = dt.getHours();
-            var m = "0" + dt.getMinutes();
-            var ampm;
-            if (hr < 12) {
-                ampm = 'AM';
-                if (hr < 10) hr = '0' + hr;
-            } else ampm = 'PM';
-            return hr + ':' + m.substr(-2) + ' ' + ampm;
-            // var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            // var date = new Date(this.email.sentAt*1000);
-            // var date = new Date(1551597348429*1000);
-            // var year = date.getFullYear();
-            // var month = months_arr[date.getMonth()];
-            // var day = date.getDate();
-            // var hours = date.getHours();
-            // var minutes = "0" + date.getMinutes();
-            // var seconds = "0" + date.getSeconds();
-            // // Display date time in MM-dd-yyyy h:m:s format
-            // var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-            // return convdataTime;
+            var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var date = new Date(this.email.sentAt*1000);
+            var year = date.getFullYear();
+            var month = months_arr[date.getMonth()];
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var seconds = "0" + date.getSeconds();
+            // Display date time in MM-dd-yyyy h:m:s format
+            var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2);
+            return convdataTime;
         },
         shortEmailBody() {
             var emailBody = this.email.body;

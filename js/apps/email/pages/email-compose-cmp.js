@@ -13,7 +13,7 @@ export default {
             <textarea v-model="body" class="e-textarea"></textarea>
             <div class="flex-btns">
                 <button class="send-btn">SEND</button>
-                <i class="fas fa-trash"></i>
+                <i class="fas fa-trash" @click="deleteEmail"></i>
             </div>
         </form>
     </div>
@@ -36,7 +36,7 @@ export default {
                     this.email = email;
                     this.subject = 'Re: '+this.email.subject;
                     this.to = this.email.to;
-                    this.body = '\n__________________________\n'+this.email.body;
+                    this.body = '\n\n<'+  +' '+ this.email.from+' wrote: >\n\n'+this.email.body;
                 })
         }
     },
@@ -44,12 +44,26 @@ export default {
         sendEmail() {
             emailService.addEmail(this.subject, this.body);
             window.location = "index.html#/email/";
+        },
+        deleteEmail() {
+            window.location = "index.html#/email/";
         }
 
     },
     computed: {
-
-
+        Unix_timestamp() {
+            var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var date = new Date(this.email.sentAt*1000);
+            var year = date.getFullYear();
+            var month = months_arr[date.getMonth()];
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var seconds = "0" + date.getSeconds();
+            // Display date time in MM-dd-yyyy h:m:s format
+            var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2);
+            return convdataTime;
+        }
     },
     components: {
 

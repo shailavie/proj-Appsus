@@ -9,10 +9,11 @@ export default {
                     <span class="grey">&nbsp;<{{email.from}}></span>
                     </div>
                     <div class="e-envlope-buttons">
+                        <button title="Mark As Unread" @click.stop="markAsUnread(email)"><i class="fas fa-envelope"></i></button>
                         <button @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
-                    <div class="e-envlope-body"><pre>{{email.body}}</pre></div>
+                    <div class="e-envlope-body" style="white-space: pre;">{{email.body}}</div>
                 </div>
     `,
     data() {
@@ -27,15 +28,19 @@ export default {
             .then(email => {
                 this.email = email
             })
-            console.log(emailId)
+        console.log(emailId)
     },
     methods: {
         reaplyMail() {
-                window.location = "index.html#/email/compose/" + this.email.id;
+            window.location = "index.html#/email/compose/" + this.email.id;
         },
         deleteEmail(email) {
             emailService.deleteEmail(email);
-            window.location="index.html#/email/";
+            window.location = "index.html#/email/";
+        },
+        markAsUnread(email) {
+            emailService.unreadEmail(email);
+            window.location = "index.html#/email/";
         }
 
     },
