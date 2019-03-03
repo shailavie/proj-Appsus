@@ -199,16 +199,18 @@ button:hover {
 .e-sidebar {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
     justify-content: space-evenly;
     background-color: lightblue;
-    flex-basis: 20%;
+    flex-basis: 15%;
     padding: 20px;
     height: 250px;
 }
 
 .e-main-emails {
     flex-basis: 80%;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .e-main-emails a {
@@ -228,10 +230,23 @@ button:hover {
 .e-email-preview {
     display: flex;
     padding: 10px;
+    border-bottom: 1px solid rgb(229, 235, 241);
 }
 
 .e-email-preview:hover {
     cursor: pointer;
+}
+
+li:nth-child(even) {
+    /* background: #cddbf2; */
+}
+
+.e-email-preview:hover {
+    /* background: #a0abbc; */
+    transition: 0.3s;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
 .e-email-author {
@@ -251,8 +266,17 @@ button:hover {
     padding: 10px;
 }
 
+.e-envlope-body {
+    margin-bottom: 30px;
+    max-width: 100%;
+}
+
 .e-envlope-details {
-    flex-grow: 1;
+    flex-grow: 0.1;
+}
+
+.e-envlope-buttons button {
+    color: grey;
 }
 
 .e-envlope-details h1 {
@@ -274,6 +298,12 @@ button:hover {
     width: 100%;
 }
 
+.e-compose-txt {
+    font-size: 1em;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
 .e-new-msg {
     /* width: 100%; */
     background-color: rgb(64, 64, 64);
