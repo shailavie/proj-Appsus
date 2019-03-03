@@ -11,10 +11,10 @@ export default {
     data() {
         return {
             emails: [],
-            filteredEmails: [],
             filterBy: {
                 txt: '',
-                selectedFilter: 'All'
+                selectedFilter: 'All',
+                sortBy: 'Sort By'
             },
             selecedId: 0,
             selectedEmail: null
@@ -37,32 +37,28 @@ export default {
         setFilter(filterBy) {
             this.filterBy.txt = filterBy.txt;
             this.filterBy.selectedFilter = filterBy.selectedFilter;
-            if (filterBy.selectedFilter === 'Read') {
-                var readEmails = this.emails.filter(email => email.isRead)
-                this.emails = readEmails;
-            }
+            this.filterBy.sortBy = filterBy.sortBy;
 
-            if (filterBy.selectedFilter === 'Unread') {
-                var unreadEmails = this.emails.filter(email => !email.isRead)
-                this.emails = unreadEmails;
-            }
-            if (filterBy.selectedFilter === 'All') {
-                emailService.getEmails()
-                    .then(emails => this.emails = emails)
-            }
         }
     },
     computed: {
         emailsToShow() {
             this.searchTerm = this.filterBy.txt.toLowerCase()
-            return this.emails.filter(email => {
+
+            var filteredEmails = this.emails.filter(email => {
                 return (
-                    email.subject.toLowerCase().includes(this.searchTerm)
-                    || email.body.toLowerCase().includes(this.searchTerm)
-                    || email.from.toLowerCase().includes(this.searchTerm)
+                    (email.subject.toLowerCase().includes(this.searchTerm)
+                        || email.body.toLowerCase().includes(this.searchTerm)
+                        || email.from.toLowerCase().includes(this.searchTerm)) &&
+                    (email.isRead && this.filterBy.selectedFilter === 'Read' ||
+                        !email.isRead && this.filterBy.selectedFilter === 'Unread' ||
+                        this.filterBy.selectedFilter === 'All'
+                    )
                 )
             })
 
+            emailService.sortEmails(filteredEmails, this.filterBy);
+            return filteredEmails;
         }
 
     },
