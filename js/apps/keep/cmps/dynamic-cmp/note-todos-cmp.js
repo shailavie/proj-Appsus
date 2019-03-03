@@ -16,21 +16,21 @@ export default {
                                 effect="sexiness" >
                         </highlight>
                     </h3>
-                    <p>
+                    <ul>
                         <!-- {{note.data.body}} -->
-                        <p 
-                            v-for="(currTodo, idx) in note.data.body"
+                        <li class="note-todo"
+                            v-for="(currTodo, idx) in note.data.todos"
                             :key="currTodo"
                             >
-                            {{note.data.body[idx]}}
+                            {{note.data.todos[idx]}}
                             <!-- {{todoToShow(note.data.body[idx])}} -->
-                        </p>
+                        </li>
                         <highlight   
                                 :msg="note.data.body" 
                                 :search="search" 
                                 effect="sexiness" >  
                         </highlight>
-                    </p>
+                    </ul>
                     <span class="labels-container"
                         v-for="(label, idx) in note.labels" 
                         :key="idx" 

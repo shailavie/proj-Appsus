@@ -1,3 +1,9 @@
+@import url('./reset.css');
+@import url('./books.css');
+@import url('./keep.css');
+@import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
     background-color: lightgreen;
 }
@@ -11,10 +17,16 @@ body {
 /* Header */
 
 .app-header {
-    min-height: 60px;
+    min-height: 100px;
     border-bottom: 1px solid darkslategray;
     border-top: 1px solid darkslategray;
     padding: 10px 20px;
+}
+
+@media (min-width: 680px) {
+    .app-header {
+        min-height: 60px;
+    }    
 }
 
 .app-header h1 {
@@ -91,25 +103,7 @@ body {
     border: 1px solid rgb(7, 6, 6, 0.3);
 }
 
-/* a.tip {
-    background-color: rgb(17, 15, 15);
-    color: white;
-    border-radius: 8px;
-}
- */
-
-/* 
-.router-link {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
-  }
-  .router-link[title]:hover:after {
-    content: attr(title);
-    position: absolute;
-    top: -100%;
-    left: 0;
-  } */
+ 
 
 /* Footer */
 

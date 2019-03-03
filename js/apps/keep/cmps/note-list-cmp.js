@@ -1,5 +1,3 @@
-import localStorageService from '../services/local-storage-service.js' //DO WE STILL NEED THIS?
-
 import noteTxt from './dynamic-cmp/note-txt-cmp.js'
 import noteImg from './dynamic-cmp/note-img-cmp.js'
 import noteVid from './dynamic-cmp/note-vid-cmp.js'
@@ -33,10 +31,8 @@ export default {
         }
     },
     created() {
-        // console.log('got :',this.search)
     },
     components: {
-        localStorageService,
         noteTxt,
         noteImg,
         noteVid,

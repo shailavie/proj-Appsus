@@ -3,30 +3,30 @@ import { makeId } from '../../../services/util-service.js';
 import localStorageService from '../services/local-storage-service.js'
 import textArea from './dynamic-cmp/form-textarea-cmp.js';
 import textBox from './dynamic-cmp/form-textbox-cmp.js';
+import textLabels from './dynamic-cmp/form-textlabels-cmp.js';
 import { eventBus, EVENT_EDITNOTE } from '../../../services/eventbus-service.js'
 
 export default {
     props: ['note'],
     template: `
     <div class="overlayer">
-    <section :style="getBgColor" class="note-add">
-    <img id='output' v-if="showImg" style="height:auto; width:50%;">
-    <form @submit.prevent="saveNewNote" class="note-add-form" @keyup.tab.prevent @keyup.esc="hideAddNote">
-            <component v-for="(currCmp, idx) in cmps" 
-                        class="add-note-field  flex   space-between"
-                        :is="currCmp.type" 
-                        :data="currCmp.data"
-                    
-                        v-model="note"
-                        :key="currCmp.id"
-                        @setInput="setInput($event, idx)">
-            </component>
-            <input class="add-img-btn" type="file" accept="image/*" @change="openFile($event)">
-           
-            <button type="submit" class="save-note-btn" @click.stop="hideAddNote">Save</button>
-            <button class="close-btn" @click.stop.prevent="hideAddNote"><i class="fas fa-times"></i></button>
-        </form>
-    </section>
+        <section :style="getBgColor" class="note-add">
+            <img id='output' v-if="showImg" style="height:auto; width:50%;">
+            <form @submit.prevent="saveNewNote" class="note-add-form" @keyup.tab.prevent @keyup.esc="hideAddNote">
+                    <component v-for="(currCmp, idx) in cmps" 
+                                class="add-note-field flex space-between"
+                                :is="currCmp.type" 
+                                :data="currCmp.data"
+                                v-model="note"
+                                :key="currCmp.id"
+                                @setInput="setInput($event, idx)">
+                    </component>
+                    <input class="add-img-btn" type="file" accept="image/*" @change="openFile($event)">
+                
+                    <button type="submit" class="save-note-btn" @click.stop="hideAddNote">Save</button>
+                    <button class="close-btn" @click.stop.prevent="hideAddNote"><i class="fas fa-times"></i></button>
+            </form>
+        </section>
     </div>
     `,
     data() {
@@ -34,14 +34,13 @@ export default {
             showImg: false,
             noteType: 'noteTxt',
             imgUrl: null,
-            note2: this.deepCopy(this.note),
             isEditMode: null,
             cmps: [
                 {
                     id: makeId(),
                     type: 'textBox',
                     data: {
-                        value: (this.isEditMode)? this.note.data.subject : '',
+                        value: (this.isEditMode) ? this.note.data.subject : '',
                         placeholder: this.note.data.subject,  // || 'Title',
                         for: 'subject',
                         myClass: 'add-note-textBox',
@@ -51,10 +50,20 @@ export default {
                     id: makeId(),
                     type: 'textArea',
                     data: {
-                        value: (this.isEditMode)? this.note.data.body : '',
+                        value: (this.isEditMode) ? this.note.data.body : '',
                         placeholder: this.note.data.body,  //'Take a note',
                         for: 'body',
                         myClass: 'add-note-textArea',
+                    }
+                },
+                {
+                    id: makeId(),
+                    type: 'textLabels',
+                    data: {
+                        value: (this.isEditMode) ? this.note.labels : '',
+                        placeholder: this.note.labels,  // || 'labels',
+                        for: 'labels',
+                        myClass: 'add-note-textBox',
                     }
                 },
             ],
@@ -114,6 +123,7 @@ export default {
             this.answers.forEach(answer => {
                 if (answer.subject) newNote.data.subject = answer.subject
                 if (answer.body) newNote.data.body = answer.body
+                if (answer.labels) newNote.labels = answer.labels
             });
             console.log('Huston we have a new note: ', newNote)
             this.$emit('newnote', newNote)
@@ -122,27 +132,23 @@ export default {
 
     created() {
         eventBus.$on(EVENT_EDITNOTE, note2Edit => {
-            console.log('hopa lalalalalalalal! lets edit this', note2Edit);
-
-
+            console.log('hopa! lets edit this', note2Edit);
             this.$set(this.cmps[0].data, 'value', note2Edit.data.subject)
             this.$set(this.cmps[1].data, 'value', note2Edit.data.body)
             this.isEditMode = true
-
-            // console.log('potaot', this.cmps[0])
-
         })
     },
     destroyed() {
         console.log('bye')
     },
     computed: {
-        getBgColor(){
-            return {'backgroundColor' : this.note.bgColor}
+        getBgColor() {
+            return { 'backgroundColor': this.note.bgColor }
         }
     },
     components: {
         textBox,
+        textLabels,
         textArea,
         localStorageService,
         eventBus

@@ -1,7 +1,7 @@
 import noteService from '../services/note-service.js'
 import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
-import addNote from '../cmps/note-add-cmp.js'
+import noteAdd from '../cmps/note-add-cmp.js'
 import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_DUPLICATE_NOTE } from '../../../services/eventbus-service.js';
 
 export default {
@@ -11,12 +11,12 @@ export default {
 
         <div class="add-note-container flex center-all">
             <input  @click="toggleAddNote" placeholder="Take a note" v-if="!showAddNote" class="take-a-note" > 
-            <add-note 
+            <note-add 
                 :note="noteToEdit"
                 v-show="showAddNote"
                 @hideAddNote="hideAddNote"
                 @newnote="addNote">
-            </add-note>
+            </note-add>
         </div>
         <div v-if="pinnedNotesCount.length > 0">
             <h4>PINNED</h4>
@@ -147,7 +147,7 @@ export default {
         noteService,
         noteList,
         noteFilter,
-        addNote,
+        noteAdd,
         eventBus
     }
 }
