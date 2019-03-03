@@ -6,7 +6,8 @@ var preview = {
         }
     },
     template: `
-    <div>
+    <div><ul>
+        <li class="e-preview">
          <div class="e-email-preview" :class="{unread: !email.isRead}" @click="toggleEnvlope">
             <div class="e-email-author">
             {{email.name}}
@@ -18,6 +19,7 @@ var preview = {
                 {{Unix_timestamp}}
             </div>
         </div>
+</li></ul>
                 <div class="e-envlope" v-if="showEnvlope">
                     <div class="e-envlope-details">
                     <h1>{{email.subject}}</h1>

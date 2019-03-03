@@ -36,7 +36,7 @@ export default {
                     this.email = email;
                     this.subject = 'Re: '+this.email.subject;
                     this.to = this.email.to;
-                    this.body = '\n\n<'+  +' '+ this.email.from+' wrote: >\n\n'+this.email.body;
+                    this.body = '\n\n<'+ this.email.from+' wrote:>\n\n'+this.email.body;
                 })
         }
     },

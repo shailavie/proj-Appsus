@@ -234,6 +234,15 @@ button:hover {
     cursor: pointer;
 }
 
+li:nth-child(even) {
+    background: #cddbf2;
+}
+
+.e-email-preview:hover {
+    background: #a0abbc;
+    transition: 0.3s
+}
+
 .e-email-author {
     flex-basis: 20%;
 }
