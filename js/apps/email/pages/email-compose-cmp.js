@@ -1,5 +1,6 @@
 import utilService from '../services/util-service.js';
 import emailService from '../services/email-service.js';
+import { eventBus, EVENT_NOTE_TO_EMAIL } from '../../../services/eventbus-service.js'
 
 export default {
     template: `
@@ -29,18 +30,31 @@ export default {
         }
     },
     created() {
-        const emailId = this.$route.params;
-        if (!utilService.isEmpty(emailId)) {
-            emailService.getEmailById(emailId.emailId)
+        const urlParams = this.$route.params.emailId;
+        var params = urlParams.split('&')
+        var emailId = params[0]
+        console.log('searching for emailId:',emailId)
+        if (params.length > 1) {
+            var subject = params[1]
+            var body = params[2]
+            this.subject = subject
+            this.body = body
+        } else if (!utilService.isEmpty(emailId)) {
+            console.log('doing Sarel stuff')
+            emailService.getEmailById(emailId)
                 .then(email => {
                     this.email = email;
-                    this.subject = 'Re: '+this.email.subject;
+                    this.subject = 'Re: ' + this.email.subject;
                     this.to = this.email.to;
                     this.body = '\n\n<'+ this.email.from+' wrote:>\n\n'+this.email.body;
                 })
         }
     },
     methods: {
+        setEmail(subject, body) {
+            this.subject = subject
+            this.body = body
+        },
         sendEmail() {
             emailService.addEmail(this.subject, this.body);
             window.location = "index.html#/email/";
@@ -66,6 +80,6 @@ export default {
         }
     },
     components: {
-
+        eventBus
     }
 }

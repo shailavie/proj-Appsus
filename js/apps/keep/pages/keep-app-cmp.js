@@ -2,12 +2,12 @@ import noteService from '../services/note-service.js'
 import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import addNote from '../cmps/note-add-cmp.js'
-import {eventBus, EVENT_EDITNOTE } from '../../../services/eventbus-service.js';
+import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE } from '../../../services/eventbus-service.js';
 
 export default {
     template: `
     <section class="notes-app"> 
-    
+    <button @click.stop="clear">clear</button>
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
 
         <div class="add-note-container flex center-all">
@@ -36,7 +36,7 @@ export default {
                 txt: '',
             },
             selectedNotes: [],
-            noteToEdit : null,
+            noteToEdit: null,
             isEditNote: null,
             searchTerm: '',
             showAddNote: false,
@@ -49,46 +49,55 @@ export default {
         this.noteToEdit = this.getEmptyNote()
         document.title = 'Keep it'
         noteService.initNotes()
-        .then(gNotes => this.notes = gNotes)
-        eventBus.$on(EVENT_EDITNOTE, note=>{
-            // console.log('hopa! lets edit this', note);
+            .then(gNotes => this.notes = gNotes)
+        eventBus.$on(EVENT_EDITNOTE, note => {
             this.noteToEdit = note
-            // console.log('puki',this.noteToEdit)
-            // setTimeout(() => {
-                this.editNote(note)
-                this.isEditNote = true
-            // }, 100);
+            this.isEditNote = true
+            this.editNote(note)
+        })
+        eventBus.$on(EVENT_DELETE_NOTE, note => {
+            noteService.deleteNote(note)
+        })
+        eventBus.$on(EVENT_TOGGLE_PIN_NOTE, note => {
+            noteService.togglePinNote(note)
+        })
+        eventBus.$on(EVENT_CHANGE_NOTE_COLOR, note => {
+            noteService.changeNoteColor(note)
         })
     },
     watch: {
-        noteToEdit : function(){
-            console.log('noteToEdit has changed: ',this.noteToEdit)
-        } 
+        noteToEdit: function () {
+            console.log('noteToEdit has changed: ', this.noteToEdit)
+        }
     },
     methods: {
-        getEmptyNote(){
+        clear() {
+            localStorage.clear()
+            console.log('local stoarge cleared')
+        },
+        getEmptyNote() {
             let emptyNote = {
-                id : '', 
-                type : '',
-                isPinned : null,
-                dateCreated : null,
-                bgColor : '',
-                labels : [],
-                data : {
-                    subject : 'Title',
-                    body : 'Take a note',
+                id: '',
+                type: '',
+                isPinned: null,
+                dateCreated: null,
+                bgColor: '',
+                labels: [],
+                data: {
+                    subject: 'Title',
+                    body: 'Take a note',
                     src: '',
                 }
             }
-        return emptyNote
+            return emptyNote
         },
-        editNote(){
+        editNote() {
             this.toggleAddNote()
         },
         hideAddNote() {
             this.showAddNote = false;
         },
-    
+
         setFilter(filterBy) {
             this.filterBy.txt = filterBy.txt;
         },
@@ -98,7 +107,7 @@ export default {
         toggleAddNote() {
             this.showAddNote = !this.showAddNote;
         },
-  
+
         addNote(note) {
             if (this.isEditNote === null) {
                 noteService.addNewNote(note)
@@ -108,7 +117,7 @@ export default {
                 this.isEditNote = null;
             }
         },
-        saveNote(note){
+        saveNote(note) {
             console.log('saveNote!')
         }
     },

@@ -5,7 +5,7 @@ export default {
     template: `
         <div class="row">
                 <input type="text" 
-                v-model="txt" 
+              
                 v-model=data.value
                 :placeholder=data.placeholder
                 @blur="reportVal" 
@@ -15,12 +15,14 @@ export default {
     `,
     data() {
         return {
-            txt: '',
+            txt: this.data.value,
         }
     },
-    methods: {
+    methods: { 
         reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.txt })
+            // console.log('sending VALUE ',this.txt)
+            // console.log('should bbe sending VALUE? ',this.data.value)
+            this.$emit('setInput', { [this.data.for]: this.data.value })
         }
     },
     created(){
@@ -34,3 +36,6 @@ export default {
         eventBus
     }
 }
+
+// v-model=data.value
+// v-model="txt" 

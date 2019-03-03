@@ -35,7 +35,7 @@ export default {
     template: `
     <div class="overlayer">
     <section :style="getBgColor" class="note-add">
-      
+    <img id='output' v-if="showImg" style="height:auto; width:50%;">
     <form @submit.prevent="saveNewNote" class="note-add-form" @keyup.tab.prevent @keyup.esc="hideAddNote">
             <component v-for="(currCmp, idx) in cmps" 
                         class="add-note-field  flex   space-between"
@@ -46,8 +46,8 @@ export default {
                         :key="currCmp.id"
                         @setInput="setInput($event, idx)">
             </component>
-            <input type="file" accept="image/*" @change="openFile($event)">
-            <img id='output' v-if="showImg" style="height:100px; width:100px;">
+            <input class="add-img-btn" type="file" accept="image/*" @change="openFile($event)">
+           
             <button type="submit" class="save-note-btn" @click.stop="hideAddNote">Save</button>
             <button class="close-btn" @click.stop.prevent="hideAddNote"><i class="fas fa-times"></i></button>
         </form>
