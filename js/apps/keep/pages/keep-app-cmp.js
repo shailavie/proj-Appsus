@@ -107,7 +107,6 @@ export default {
         toggleAddNote() {
             this.showAddNote = !this.showAddNote;
         },
-
         addNote(note) {
             if (this.isEditNote === null) {
                 noteService.addNewNote(note)
@@ -117,9 +116,9 @@ export default {
                 this.isEditNote = null;
             }
         },
-        saveNote(note) {
-            console.log('saveNote!')
-        }
+        // saveNote(note) {
+        //     console.log('saveNote!')
+        // }
     },
     computed: {
         notesToShow() {

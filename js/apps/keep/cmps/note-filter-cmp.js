@@ -22,6 +22,7 @@ export default {
     methods: {
         emitFilter() {
             console.log('Emitting to Parent');
+            console.log(this.filterBy.txt)
             this.$emit('filtered', { ...this.filterBy })
         },
 
