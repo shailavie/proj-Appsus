@@ -7,11 +7,13 @@ export default {
     getEmails,
     getEmailById,
     addEmail,
-    deleteEmail
+    deleteEmail,
+    unreadEmail,
+    markAsRead
 }
 
 function getEmails() {
-    var emails= storageService.loadFromStorage(EMAILS_KEY);
+    var emails = storageService.loadFromStorage(EMAILS_KEY);
     if (!emails || emails.length === 0) {
         storageService.saveToStorage(EMAILS_KEY, gEmails);
     } else {
@@ -51,11 +53,24 @@ function addEmail(subject, body) {
     storageService.saveToStorage(EMAILS_KEY, gEmails);
 }
 
-function deleteEmail(email){
+function deleteEmail(email) {
     let emailIdx = _getEmailIdxByEmail(email)
-    gEmails.splice(emailIdx,1)
+    gEmails.splice(emailIdx, 1)
     storageService.saveToStorage(EMAILS_KEY, gEmails);
     return Promise.resolve(gEmails)
+}
+
+function unreadEmail(email) {
+    email.isRead = false;
+    console.log(gEmails)
+    console.log(email.isRead)
+    storageService.saveToStorage(EMAILS_KEY, gEmails);
+}
+
+function markAsRead(email) {
+    email.isRead = true;
+    storageService.saveToStorage(EMAILS_KEY, gEmails);
+
 }
 
 var gEmails = [
