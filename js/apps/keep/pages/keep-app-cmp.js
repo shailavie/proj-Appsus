@@ -2,12 +2,11 @@ import noteService from '../services/note-service.js'
 import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import addNote from '../cmps/note-add-cmp.js'
-import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE } from '../../../services/eventbus-service.js';
+import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_DUPLICATE_NOTE } from '../../../services/eventbus-service.js';
 
 export default {
     template: `
     <section class="notes-app"> 
-    <button @click.stop="clear">clear</button>
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
 
         <div class="add-note-container flex center-all">
@@ -64,6 +63,9 @@ export default {
         eventBus.$on(EVENT_CHANGE_NOTE_COLOR, note => {
             noteService.changeNoteColor(note)
         })
+        eventBus.$on(EVENT_DUPLICATE_NOTE, note => {
+            noteService.duplicateNote(note)
+        })
     },
     watch: {
         noteToEdit: function () {
@@ -71,10 +73,6 @@ export default {
         }
     },
     methods: {
-        clear() {
-            localStorage.clear()
-            console.log('local stoarge cleared')
-        },
         getEmptyNote() {
             let emptyNote = {
                 id: '',
@@ -116,9 +114,6 @@ export default {
                 this.isEditNote = null;
             }
         },
-        // saveNote(note) {
-        //     console.log('saveNote!')
-        // }
     },
     computed: {
         notesToShow() {

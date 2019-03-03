@@ -3,31 +3,15 @@
 ///////////////////////////////
 
 
+import { eventBus, EVENT_NOTE_TO_EMAIL } from './services/eventbus-service.js'
 import emailApp from './apps/email/pages/email-app-cmp.js'
 import emailInbox from './apps/email/pages/email-inbox-cmp.js'
 import emailCompose from './apps/email/pages/email-compose-cmp.js'
 import emailDetails from './apps/email/pages/email-details-cmp.js'
+// import emailService from './apps/email/services/email-service.js'
 import keepApp from './apps/keep/pages/keep-app-cmp.js'
-import { eventBus, EVENT_NOTE_TO_EMAIL } from './services/eventbus-service.js'
-import emailService from './apps/email/services/email-service.js'
 import booksApp from './apps/books/js/pages/book-app-cmp.js'
-
-const homeCmp = {
-    template: `<h1> Welcome to Appsus. Choose youre App</h1>`
-    ,created(){
-        console.log('home is adding event BUS')
-        eventBus.$on(EVENT_NOTE_TO_EMAIL, emailFromNote => {
-            console.log('TA DA!',emailFromNote)
-            let url = `index.html#/email/compose/${emailFromNote.id}&${emailFromNote.subject}&${emailFromNote.body}`
-            console.log(url)
-            window.location = url
-        })
-    },
-    component:{
-        eventBus,
-        emailService
-    }
-}
+import homeCmp from './home-cmp.js'
 
 const routes = [
     { path: '/', component: homeCmp },

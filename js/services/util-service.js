@@ -5,12 +5,6 @@ export default {
     getRandomIntInclusive
 }
 
-// export default {
-//     getCurrencySymbol,
-//     getRandomIntInclusive,
-//     makeId,
-// }
-
 export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -25,7 +19,6 @@ export function makeId() {
     for (var i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-
     return txt;
 }
 
