@@ -199,18 +199,24 @@ button:hover {
 .e-sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    justify-content: space-evenly;
-    background-color: lightblue;
+    justify-content: flex-start;
+    align-content: flex-end;
+    /* justify-content: space-evenly; */
+    background-color: rgb(171,212,241);
     flex-basis: 15%;
     padding: 20px;
-    height: 250px;
+    /* height: 250px; */
+}
+
+.e-sidebar-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 }
 
 .e-main-emails {
-    flex-basis: 80%;
-    /* padding: 10px; */
+    /* flex-basis: 80%; */
+    flex-grow: 1;
 }
 
 .e-main-emails a {
@@ -271,12 +277,26 @@ li:nth-child(even) {
     max-width: 100%;
 }
 
+.e-envlope-body-details {
+    margin-bottom: 30px;
+    /* max-width: 100%; */
+}
+
 .e-envlope-details {
     flex-grow: 0.1;
 }
 
+.e-envlope-details-e {}
+
 .e-envlope-buttons button {
     color: grey;
+    opacity:0.7;
+}
+
+.e-envlope-buttons button:hover {
+    color: black;
+    opacity:1;
+    transition: 0.3s;
 }
 
 .e-envlope-details h1 {
@@ -298,12 +318,21 @@ li:nth-child(even) {
     width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+    text-align: center
+}
+
+a:focus {
+    font-weight: bold;
+}
+
 .e-compose-txt {
     font-size: 1em;
     text-decoration: none;
-    display: flex;
-    justify-content: center;
 }
+
 .e-new-msg {
     /* width: 100%; */
     background-color: rgb(64, 64, 64);

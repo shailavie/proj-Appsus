@@ -3,7 +3,7 @@ import emailService from '../services/email-service.js';
 export default {
     template: `
                 <div class="e-envlope" v-if="email">
-                    <div class="e-envlope-details">
+                    <div class="e-envlope-details column">
                     <h1>{{email.subject}}</h1>
                     <span class="unread">{{email.name}}</span>
                     <span class="grey">&nbsp;<{{email.from}}></span>
@@ -13,7 +13,7 @@ export default {
                         <button @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
-                    <div class="e-envlope-body" style="white-space: pre;">{{email.body}}</div>
+                    <div class="e-envlope-body-deatils" style="white-space: pre;">{{email.body}}</div>
                 </div>
     `,
     data() {
@@ -28,7 +28,6 @@ export default {
             .then(email => {
                 this.email = email
             })
-        console.log(emailId)
     },
     methods: {
         reaplyMail() {

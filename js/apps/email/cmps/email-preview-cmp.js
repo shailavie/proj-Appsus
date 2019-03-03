@@ -71,7 +71,7 @@ var preview = {
             var minutes = "0" + date.getMinutes();
             var seconds = "0" + date.getSeconds();
             // Display date time in MM-dd-yyyy h:m:s format
-            var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2);
+            var convdataTime = hours + ':' + minutes.substr(-2);
             return convdataTime;
         },
         shortEmailBody() {
