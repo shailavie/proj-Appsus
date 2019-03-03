@@ -34,7 +34,7 @@ export default {
         }
     },
     created() {
-        console.log('got :',this.search)
+        // console.log('got :',this.search)
     },
     components: {
         localStorageService,

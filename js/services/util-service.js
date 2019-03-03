@@ -1,7 +1,8 @@
 // This Module works with NAMED EXPORTS
 
 export default {
-    makeId
+    makeId,
+    getRandomIntInclusive
 }
 
 // export default {
@@ -28,20 +29,4 @@ export function makeId() {
     return txt;
 }
 
-export function getCurrencySymbol(currency) {
-    var symbol = ''
-    switch (currency) {
-        case 'ILS':
-            symbol = '₪'
-            break;
-        case 'EUR':
-            symbol = '€'
-            break;
-        case 'USD':
-        default:
-            symbol = '$'
-            break;
-    }
-    return symbol;
-}
-
+ 
