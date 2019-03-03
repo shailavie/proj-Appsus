@@ -34,7 +34,6 @@ var preview = {
                     </div>
                 </div>
                 <div class="e-envlope-body" v-if="showEnvlope" style="white-space: pre;">{{email.body}}</div>
-                <hr/>
 </div>
         
     `,

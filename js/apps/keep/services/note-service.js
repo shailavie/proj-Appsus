@@ -1,8 +1,6 @@
 
-// import util from '../../../services/util-service.js'
-// import localStorageService from './local-storage-service.js'
 // import {dummyNotes} from './note-storage.js'
-// import { makeId } from '../../../services/util-service.js';
+import { makeId } from '../../../services/util-service.js'
 
 export default {
     initNotes,
@@ -11,11 +9,12 @@ export default {
     deleteNote,
     togglePinNote,
     editNote,
-    changeNoteColor
+    changeNoteColor,
+    duplicateNote
 }
 
 var gNotes;
-
+const NOTES_KEY = 'notes'
 var dummyNotes = [
     {
         id: makeId(),
@@ -29,18 +28,18 @@ var dummyNotes = [
             body: '052-8985898',
         }
     },
-    {
-        id: makeId(),
-        type: 'noteTodos',
-        isPinned: false,
-        dateCreated: new Date(),
-        bgColor: 'white',
-        labels: ['must get sleep'],
-        data: {
-            subject: 'Don\'t forget',
-            body : ['Sleep','Learn Vue','Call mom']
-        }
-    },
+    // {
+    //     id: makeId(),
+    //     type: 'noteTodos',
+    //     isPinned: false,
+    //     dateCreated: new Date(),
+    //     bgColor: 'white',
+    //     labels: ['must get sleep'],
+    //     data: {
+    //         subject: 'Don\'t forget',
+    //         body : ['Sleep','Learn Vue','Call mom']
+    //     }
+    // },
     {
         id: makeId(),
         type: 'noteImg',
@@ -203,64 +202,37 @@ var dummyNotes = [
 
 ]
 
-
-const NOTES_KEY = 'notes'
-
 initNotes()
 
-
+// Exported Functions
 function initNotes() {
     gNotes = _loadFromStorage(NOTES_KEY);
     if (!gNotes || gNotes.length === 0) {
         gNotes = _createNotes();
-        // gNotes = JSON.parse(JSON.stringify(dummyNotes))
         _saveToStorage(NOTES_KEY, gNotes)
-        console.log(gNotes)
     }
     return Promise.resolve(gNotes)
 }
-
-function makeId() {
-    var length = 10;
-    var txt = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return txt;
-}
-
-
-function getNoteById(noteId) {
-    var note = gNotes.find(function (note) {
-        return noteId === note.id
-    })
-    return Promise.resolve(note)
-}
-
-
 function addNewNote(newNote) {
     gNotes.unshift(newNote)
     _saveToStorage(NOTES_KEY, gNotes)
     return Promise.resolve(gNotes)
 }
-
 function editNote(note) {
-    console.log('EDITING A NOTE')
-    console.log('NOTE TO EDIT:',note)
+    // console.log('EDITING A NOTE')
+    // console.log('NOTE TO EDIT:', note)
     let noteIdx = _getNoteIdxByNote(note)
-    console.log('idx',noteIdx)
     gNotes.splice(noteIdx, 1, note)
-    console.log('here', gNotes[noteIdx])
     _saveToStorage(NOTES_KEY, gNotes)
-
-    console.log(gNotes)
-
     return Promise.resolve(gNotes)
 }
-
+function duplicateNote(note) {
+    let noteCopy = _deepCopy(note)
+    noteCopy.id = makeId()
+    gNotes.unshift(noteCopy)
+    _saveToStorage(NOTES_KEY, gNotes)
+    return Promise.resolve(gNotes)
+}
 function deleteNote(note) {
     console.log('service deletes ', note)
     let noteIdx = _getNoteIdxByNote(note)
@@ -268,41 +240,42 @@ function deleteNote(note) {
     _saveToStorage(NOTES_KEY, gNotes)
     return Promise.resolve(gNotes)
 }
-
 function getNotes() {
     return Promise.resolve(gNotes)
 }
-
-function changeNoteColor(note){
-    console.log('not really need the note? here is the color that was sent:',note.bgColor)
+function changeNoteColor(note) {
     _saveToStorage(NOTES_KEY, gNotes)
     return Promise.resolve(gNotes)
 }
-
 function togglePinNote(note) {
     note.isPinned = !note.isPinned;
     _saveToStorage(NOTES_KEY, gNotes)
     return Promise.resolve(gNotes)
 }
 
+// Inhouse functions
 function _getNoteIdxByNote(note) {
     return gNotes.findIndex(function (item) {
         return note.id === item.id
     })
 }
-
-
+function _deepCopy(item) {
+    return JSON.parse(JSON.stringify(item))
+}
 function _createNotes() {
-    console.log('creating notes from dummy');
+    console.log('creating notes from dummy data');
     let notes = dummyNotes;
     return notes
 }
-
-
+function _getNoteById(noteId) {
+    var note = gNotes.find(function (note) {
+        return noteId === note.id
+    })
+    return Promise.resolve(note)
+}
 function _saveToStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
-
 function _loadFromStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }

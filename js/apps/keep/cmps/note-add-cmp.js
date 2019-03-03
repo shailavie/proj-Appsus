@@ -5,31 +5,6 @@ import textArea from './dynamic-cmp/form-textarea-cmp.js';
 import textBox from './dynamic-cmp/form-textbox-cmp.js';
 import { eventBus, EVENT_EDITNOTE } from '../../../services/eventbus-service.js'
 
-const selectBox = {
-    props: ['data'],
-    template: `
-        <div class="row">
-            <placeholder>
-                {{data.placeholder}}
-                <select v-model="selectedOpt" @blur="reportVal">
-                    <option v-for="opt in data.opts">{{opt}}</option>
-                </select>
-            </placeholder>
-        </div>
-    `,
-    data() {
-        return {
-            selectedOpt: '',
-        }
-    },
-    methods: {
-        reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.selectedOpt })
-        }
-    }
-}
-
-
 export default {
     props: ['note'],
     template: `
@@ -168,7 +143,6 @@ export default {
     },
     components: {
         textBox,
-        selectBox,
         textArea,
         localStorageService,
         eventBus

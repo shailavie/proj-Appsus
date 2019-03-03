@@ -1,4 +1,4 @@
-import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_NOTE_TO_EMAIL } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_NOTE_TO_EMAIL, EVENT_DUPLICATE_NOTE } from '../../../services/eventbus-service.js'
 // import { makeId } from '../../../services/util-service.js'
 import { makeId } from '../../email/services/util-service.js'
 
@@ -31,11 +31,12 @@ export default {
     props: ['note'],
     template: `
         <div class="note-controllers-container">
-            <i class="fas fa-thumbtack" :title="pinTitle" @click.stop="pinNote(note)"></i>
-            <i class="fas fa-edit" title="Edit Note" @click.stop="editNote(note)"></i>
-            <i class="fas fa-share-square" title="Send to mail" @click.stop="sendNoteToMail(note)"></i>
-            <i class="fas fa-palette" title="Change color" @mouseover="showColorPicker=!showColorPicker" ></i>
-            <i class="fas fa-trash" title="Delete note" @click.stop="deleteNote(note)"></i>
+            <i class="fas fa-thumbtack note-control-opt" :title="pinTitle" @click.stop="pinNote(note)"></i>
+            <i class="fas fa-edit note-control-opt" title="Edit note" @click.stop="editNote(note)"></i>
+            <i class="fas fa-copy note-control-opt" title="Duplicate note" @click.stop="duplicateNote(note)"></i>
+            <i class="fas fa-palette note-control-opt" title="Change color" @mouseover="showColorPicker=!showColorPicker" ></i>
+            <i class="fas fa-share-square note-control-opt" title="Send to mail" @click.stop="sendNoteToMail"></i>
+            <i class="fas fa-trash note-control-opt" title="Delete note" @click.stop="deleteNote(note)"></i>
             <color-picker v-if="showColorPicker" @changeColor="changeColor" :colors="colors" @hideColorPicker="hideColorPicker"></color-picker>
         </div>
         `,
@@ -46,8 +47,7 @@ export default {
         }
     },
     methods: {
-        sendNoteToMail(note) {
-            // console.log('yalla, bo ', note)
+        sendNoteToMail() {
             let noteToEmail = {
                 id: makeId(),
                 name: "Me",
@@ -58,27 +58,26 @@ export default {
                 isRead: false,
                 sentAt: Math.floor(Date.now() / 1000)
             }
-            console.log('here you go Sarel',noteToEmail)
+            // console.log('here you go Sarel',noteToEmail)
             eventBus.$emit(EVENT_NOTE_TO_EMAIL,noteToEmail)
         },
         editNote(note) {
-            // console.log('editing note',note)
             this.$emit('editNote', note)
             eventBus.$emit(EVENT_EDITNOTE, note)
+        },
+        duplicateNote(note){
+            eventBus.$emit(EVENT_DUPLICATE_NOTE, note)
         },
         hideColorPicker() {
             this.showColorPicker = false;
         },
         deleteNote(note) {
-            // this.$emit('deleteNote',note)
             eventBus.$emit(EVENT_DELETE_NOTE, note)
         },
         pinNote(note) {
-            // this.$emit('pinNote',note)
             eventBus.$emit(EVENT_TOGGLE_PIN_NOTE, note)
         },
         changeColor(color) {
-            // this.$emit('changeColor',color)
             this.note.bgColor = color
             eventBus.$emit(EVENT_CHANGE_NOTE_COLOR, this.note)
         },
