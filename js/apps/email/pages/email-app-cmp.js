@@ -49,7 +49,7 @@ export default {
         },
         emailsCount() {
             if (!this.emailsToShow) return 0;
-            return this.emailsToShow.length;        
+            return this.emailsToShow.length;
         },
         unreadCount() {
             if (!this.emailsToShow) return 0;

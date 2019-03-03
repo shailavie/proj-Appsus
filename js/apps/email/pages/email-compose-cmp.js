@@ -33,7 +33,7 @@ export default {
         const urlParams = this.$route.params.emailId;
         var params = urlParams.split('&')
         var emailId = params[0]
-        console.log('searching for emailId:',emailId)
+        console.log('searching for emailId:', emailId)
         if (params.length > 1) {
             var subject = params[1]
             var body = params[2]
@@ -46,7 +46,7 @@ export default {
                     this.email = email;
                     this.subject = 'Re: ' + this.email.subject;
                     this.to = this.email.to;
-                    this.body = '\n\n<'+ this.email.from+' wrote:>\n\n'+this.email.body;
+                    this.body = '\n\n<' + this.email.from + ' wrote:>\n\n' + this.email.body;
                 })
         }
     },
@@ -66,8 +66,8 @@ export default {
     },
     computed: {
         Unix_timestamp() {
-            var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            var date = new Date(this.email.sentAt*1000);
+            var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var date = new Date(this.email.sentAt * 1000);
             var year = date.getFullYear();
             var month = months_arr[date.getMonth()];
             var day = date.getDate();
@@ -75,7 +75,7 @@ export default {
             var minutes = "0" + date.getMinutes();
             var seconds = "0" + date.getSeconds();
             // Display date time in MM-dd-yyyy h:m:s format
-            var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2);
+            var convdataTime = month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2);
             return convdataTime;
         }
     },

@@ -62,8 +62,8 @@ var preview = {
     },
     computed: {
         Unix_timestamp() {
-            var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            var date = new Date(this.email.sentAt*1000);
+            var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var date = new Date(this.email.sentAt * 1000);
             var year = date.getFullYear();
             var month = months_arr[date.getMonth()];
             var day = date.getDate();
