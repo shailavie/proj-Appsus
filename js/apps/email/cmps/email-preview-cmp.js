@@ -27,7 +27,7 @@ var preview = {
                     <div class="e-envlope-buttons">
                         <button title="Delete Email" @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
                         <button title="Open Email" @click="openMailNewWindow"><i class="fas fa-expand"></i></button>
-                        <button title="Mark As Unread" @click="markAsUnread"><i class="fas fa-envelope"></i></button>
+                        <button title="Mark As Unread" @click.stop="markAsUnread"><i class="fas fa-envelope"></i></button>
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>
                     </div>
                 </div>
@@ -53,6 +53,7 @@ var preview = {
         },
         markAsUnread(email) {
             this.$emit('unread', email)
+            this.showEnvlope = false;
         },
         reaplyMail() {
             window.location = "index.html#/email/compose/" + this.email.id;
@@ -64,13 +65,24 @@ var preview = {
             var dt = new Date(t * 1000);
             var hr = dt.getHours();
             var m = "0" + dt.getMinutes();
-            var s = "0" + dt.getSeconds();
             var ampm;
             if (hr < 12) {
                 ampm = 'AM';
                 if (hr < 10) hr = '0' + hr;
             } else ampm = 'PM';
             return hr + ':' + m.substr(-2) + ' ' + ampm;
+            // var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            // var date = new Date(this.email.sentAt*1000);
+            // var date = new Date(1551597348429*1000);
+            // var year = date.getFullYear();
+            // var month = months_arr[date.getMonth()];
+            // var day = date.getDate();
+            // var hours = date.getHours();
+            // var minutes = "0" + date.getMinutes();
+            // var seconds = "0" + date.getSeconds();
+            // // Display date time in MM-dd-yyyy h:m:s format
+            // var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+            // return convdataTime;
         },
         shortEmailBody() {
             var emailBody = this.email.body;

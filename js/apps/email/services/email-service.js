@@ -62,8 +62,6 @@ function deleteEmail(email) {
 
 function unreadEmail(email) {
     email.isRead = false;
-    console.log(gEmails)
-    console.log(email.isRead)
     storageService.saveToStorage(EMAILS_KEY, gEmails);
 }
 
