@@ -1,5 +1,4 @@
 import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_NOTE_TO_EMAIL, EVENT_DUPLICATE_NOTE } from '../../../services/eventbus-service.js'
-// import { makeId } from '../../../services/util-service.js'
 import { makeId } from '../../email/services/util-service.js'
 
 const colorPicker = {
@@ -25,8 +24,6 @@ const colorPicker = {
 }
 
 
-//TO DO - Add duplicate functionality (eventBus to keep-app-cmp -> service)
-// Use this icon <i class="fas fa-copy"></i>
 export default {
     props: ['note'],
     template: `
@@ -59,13 +56,13 @@ export default {
                 sentAt: Math.floor(Date.now() / 1000)
             }
             // console.log('here you go Sarel',noteToEmail)
-            eventBus.$emit(EVENT_NOTE_TO_EMAIL,noteToEmail)
+            eventBus.$emit(EVENT_NOTE_TO_EMAIL, noteToEmail)
         },
         editNote(note) {
             this.$emit('editNote', note)
             eventBus.$emit(EVENT_EDITNOTE, note)
         },
-        duplicateNote(note){
+        duplicateNote(note) {
             eventBus.$emit(EVENT_DUPLICATE_NOTE, note)
         },
         hideColorPicker() {

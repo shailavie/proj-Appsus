@@ -17,14 +17,14 @@ export default {
             txt: this.data.value,
         }
     },
-    methods: { 
+    methods: {
         reportVal() {
             let res = this.data.value.split(',')
-            console.log('got',res)
+            console.log('got', res)
             console.log(this.data.for)
             this.$emit('setInput', { [this.data.for]: res })
         }
-    },
+    }, 
     created(){
         eventBus.$on(EVENT_EDITNOTE, val => {
             this.$set(this.data, 'value', val.labels)

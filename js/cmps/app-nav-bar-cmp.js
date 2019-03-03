@@ -22,9 +22,9 @@ export default {
                 </nav>
             </div>
         `,
-        data() {
-            return {
-                showDrawer : false,
-            }
+    data() {
+        return {
+            showDrawer: false,
         }
+    }
 }

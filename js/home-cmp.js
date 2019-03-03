@@ -1,6 +1,6 @@
 import { eventBus, EVENT_NOTE_TO_EMAIL } from './services/eventbus-service.js'
 
-export default  {
+export default {
     template: `
         <section>
             <div class="home-apps">
@@ -27,16 +27,16 @@ export default  {
             </div>
         </section>
         `
-    ,created(){
+    , created() {
         console.log('home is adding event BUS')
         eventBus.$on(EVENT_NOTE_TO_EMAIL, emailFromNote => {
-            console.log('TA DA!',emailFromNote)
+            console.log('TA DA!', emailFromNote)
             let url = `index.html#/email/compose/${emailFromNote.id}&${emailFromNote.subject}&${emailFromNote.body}`
             console.log(url)
             window.location = url
         })
     },
-    component:{
+    component: {
         eventBus,
     }
 }

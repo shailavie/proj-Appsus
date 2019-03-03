@@ -2,10 +2,10 @@ import labels from '../note-preview-labels-cmp.js'
 import highlight from '../note-preview-highligh-cmp.js'
 import noteControls from '../note-preview-controls-cmp.js'
 
- //TO DO - TODOS
+//TO DO - TODOS
 
 export default {
-    props: ['note', 'idx','search'],
+    props: ['note', 'idx', 'search'],
     template: `
             <div :style="getBgColor" class="note-preview" @mouseover="showControls = true" @mouseout="showControls = false">
                 <div class="note-preview-snippet">
@@ -46,7 +46,7 @@ export default {
                 </div>
             </div>
     `,
-    data(){
+    data() {
         return {
             showControls: false,
         }
@@ -54,16 +54,16 @@ export default {
     methods: {
     },
     computed: {
-        getBgColor(){
-            return {'backgroundColor' : this.note.bgColor}
+        getBgColor() {
+            return { 'backgroundColor': this.note.bgColor }
         },
-        todoToShow(todoIdx){
+        todoToShow(todoIdx) {
             let todo = todoIdx
             console.log('gpt smth', todoIdx)
             return todo.toUpperCase()
         }
     },
-    components:{
+    components: {
         labels,
         highlight,
         noteControls

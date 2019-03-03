@@ -7,11 +7,11 @@ export default {
                 <nav-bar></nav-bar>
                 <img class="user-avatar" src="./img/user.jpg" alt="user" @click="clearStorage">
         </header> 
-    `,components: {
+    `, components: {
         navBar,
     },
-    methods:{
-        clearStorage(){
+    methods: {
+        clearStorage() {
             console.log('local storage cleared')
             localStorage.clear()
         }

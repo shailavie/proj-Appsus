@@ -18,7 +18,7 @@ export default {
             textArea: this.data.value,
         }
     },
-    methods: { 
+    methods: {
         reportVal() {
             this.$emit('setInput', { [this.data.for]: this.data.value })
         }
@@ -27,9 +27,9 @@ export default {
         eventBus.$on(EVENT_EDITNOTE, val => {
             console.log('hopa! lets edit this', val.data.body);
             this.$set(this.data, 'value', val.data.body)
-            
+
             // this.data.value = val.data.body
-            
+
             // let obj = JSON.parse(JSON.stringify(this.data.value))
             // obj.value = val.data.body
             // console.log(obj)

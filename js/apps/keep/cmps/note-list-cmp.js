@@ -5,7 +5,7 @@ import noteAud from './dynamic-cmp/note-aud-cmp.js'
 import noteTodos from './dynamic-cmp/note-todos-cmp.js'
 
 export default {
-    props: ['notes','search'],
+    props: ['notes', 'search'],
     template: `
            <masonry 
            :cols="{default: 5, 1500 :4, 1000: 3, 700: 2, 500: 1}" 
@@ -26,7 +26,7 @@ export default {
     `,
     methods: {
         selectNote(note) {
-            console.log(note,'is selected!')
+            console.log(note, 'is selected!')
             this.$emit('selected', note)
         }
     },
@@ -42,10 +42,9 @@ export default {
 }
 
 /* <transition-group tag="div"  name="fade"
-v-for="(currNote, idx) in notes" 
+v-for="(currNote, idx) in notes"
 :key="idx"
 :note="currNote"
 >
 
 </transition-group> */
- 

@@ -37,8 +37,8 @@ var dummyNotes = [
         labels: ['must get sleep'],
         data: {
             subject: 'Dont forget',
-            body : '',
-            todos : ['Sleep','Learn Vue','Call mom'],
+            body: '',
+            todos: ['Sleep', 'Learn Vue', 'Call mom'],
         }
     },
     {

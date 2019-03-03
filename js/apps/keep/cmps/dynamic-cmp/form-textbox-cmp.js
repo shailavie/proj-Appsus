@@ -18,12 +18,12 @@ export default {
             txt: this.data.value,
         }
     },
-    methods: { 
+    methods: {
         reportVal() {
             this.$emit('setInput', { [this.data.for]: this.data.value })
         }
     },
-    created(){
+    created() {
         eventBus.$on(EVENT_EDITNOTE, val => {
             console.log('hopa! lets edit this', val.data.subject);
             this.$set(this.data, 'value', val.data.subject)
