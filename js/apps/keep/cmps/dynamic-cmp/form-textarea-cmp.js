@@ -5,8 +5,8 @@ export default {
     template: `
         <div class="row">
                 <textarea type="text" 
-                v-model="textArea" 
-                :value=data.value
+            
+                v-model=data.value
                 :placeholder=data.placeholder 
                 @blur="reportVal" 
                 class="add-note-textArea" 
@@ -15,17 +15,18 @@ export default {
     `,
     data() {
         return {
-            textArea: '',
+            textArea: this.data.value,
         }
     },
-    methods: {
+    methods: { 
         reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.textArea })
+            this.$emit('setInput', { [this.data.for]: this.data.value })
         }
     },
     created() {
         eventBus.$on(EVENT_EDITNOTE, val => {
             console.log('hopa! lets edit this', val.data.body);
+            this.$set(this.data, 'value', val.data.body)
             
             // this.data.value = val.data.body
             
@@ -34,7 +35,6 @@ export default {
             // console.log(obj)
             // Object.assign(this.data.value,obj)
 
-            this.$set(this.data, 'value', val.data.body)
         })
     },
     components: {
@@ -42,3 +42,4 @@ export default {
     }
 }
 
+// v-model=data.value

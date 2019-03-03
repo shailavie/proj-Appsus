@@ -1,8 +1,6 @@
-// import noteFilterCmp from "./note-filter-cmp";
 import labels from '../note-preview-labels-cmp.js'
 import highlight from '../note-preview-highligh-cmp.js'
 import noteControls from '../note-preview-controls-cmp.js'
-import noteService from '../../services/note-service.js'; // TO DO - eventbus so that only the page will talk to service
 
  
 export default {
@@ -25,7 +23,6 @@ export default {
                                 :msg="note.data.body" 
                                 :search="search" 
                                 effect="sexiness" >  
-                        {{note.data.body}}
                         </highlight>
                     </p>
                     <span class="labels-container"
@@ -40,9 +37,6 @@ export default {
                     <note-controls 
                         :note="note" 
                         v-show="showControls" 
-                        @pinNote="pinNote(note)" 
-                        @changeColor="changeColor" 
-                        @deleteNote="deleteNote(note)" 
                         ></note-controls>
                 </div>
             </div>
@@ -53,21 +47,6 @@ export default {
         }
     },
     methods: {
-        deleteNote(note){
-            console.log('got request to delete', note)
-            noteService.deleteNote(note)
-        },
-        pinNote(note){
-            console.log('got request to pin', note)
-            noteService.togglePinNote(note)
-        },
-        changeColor(color){
-            console.log('lets2 change color!',color)
-            this.$emit('changeColor',color)
-            // noteService.changeColor(note,color)
-            this.note.bgColor = color
-        },
-        
     },
     computed: {
         getBgColor(){

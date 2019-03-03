@@ -10,7 +10,8 @@ export default {
     addNewNote,
     deleteNote,
     togglePinNote,
-    editNote
+    editNote,
+    changeNoteColor
 }
 
 var gNotes;
@@ -30,6 +31,18 @@ var dummyNotes = [
     },
     {
         id: makeId(),
+        type: 'noteTodos',
+        isPinned: false,
+        dateCreated: new Date(),
+        bgColor: 'white',
+        labels: ['must get sleep'],
+        data: {
+            subject: 'Don\'t forget',
+            body : ['Sleep','Learn Vue','Call mom']
+        }
+    },
+    {
+        id: makeId(),
         type: 'noteImg',
         isPinned: false,
         dateCreated: new Date(),
@@ -37,7 +50,7 @@ var dummyNotes = [
         labels: ['not sure', 'Fry', 'Futurama'],
         data: {
             subject: 'Fry not sure',
-            body: '052-8985898',
+            body: 'Is this the real life, is this just fantasy?',
             src: 'https://i.kym-cdn.com/entries/icons/mobile/000/006/026/NOTSUREIF.jpg'
         }
     },
@@ -202,6 +215,7 @@ function initNotes() {
         gNotes = _createNotes();
         // gNotes = JSON.parse(JSON.stringify(dummyNotes))
         _saveToStorage(NOTES_KEY, gNotes)
+        console.log(gNotes)
     }
     return Promise.resolve(gNotes)
 }
@@ -234,13 +248,16 @@ function addNewNote(newNote) {
 }
 
 function editNote(note) {
-    console.log('potato!!!!!!!!!!!!!!!!!!!!!!!!')
-    console.log(note)
+    console.log('EDITING A NOTE')
+    console.log('NOTE TO EDIT:',note)
     let noteIdx = _getNoteIdxByNote(note)
     console.log('idx',noteIdx)
     gNotes.splice(noteIdx, 1, note)
     console.log('here', gNotes[noteIdx])
     _saveToStorage(NOTES_KEY, gNotes)
+
+    console.log(gNotes)
+
     return Promise.resolve(gNotes)
 }
 
@@ -256,8 +273,15 @@ function getNotes() {
     return Promise.resolve(gNotes)
 }
 
+function changeNoteColor(note){
+    console.log('not really need the note? here is the color that was sent:',note.bgColor)
+    _saveToStorage(NOTES_KEY, gNotes)
+    return Promise.resolve(gNotes)
+}
+
 function togglePinNote(note) {
     note.isPinned = !note.isPinned;
+    _saveToStorage(NOTES_KEY, gNotes)
     return Promise.resolve(gNotes)
 }
 

@@ -2,7 +2,8 @@ import labels from '../note-preview-labels-cmp.js'
 import highlight from '../note-preview-highligh-cmp.js'
 import noteControls from '../note-preview-controls-cmp.js'
 
- 
+ //TO DO - TODOS
+
 export default {
     props: ['note', 'idx','search'],
     template: `
@@ -16,6 +17,14 @@ export default {
                         </highlight>
                     </h3>
                     <p>
+                        <!-- {{note.data.body}} -->
+                        <p 
+                            v-for="(currTodo, idx) in note.data.body"
+                            :key="currTodo"
+                            >
+                            {{note.data.body[idx]}}
+                            <!-- {{todoToShow(note.data.body[idx])}} -->
+                        </p>
                         <highlight   
                                 :msg="note.data.body" 
                                 :search="search" 
@@ -47,6 +56,11 @@ export default {
     computed: {
         getBgColor(){
             return {'backgroundColor' : this.note.bgColor}
+        },
+        todoToShow(todoIdx){
+            let todo = todoIdx
+            console.log('gpt smth', todoIdx)
+            return todo.toUpperCase()
         }
     },
     components:{
