@@ -11,6 +11,7 @@ function loadFromLocalStorage(key){
 }
 
 function saveToLocalStorage(key,item){
+    console.log('saving to local storge',item)
     localStorage.setItem(key,item)
     return Promise.resolve(item)
 }

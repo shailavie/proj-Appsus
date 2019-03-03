@@ -1,4 +1,4 @@
- 
+import {eventBus, EVENT_EDITNOTE } from '../../../services/eventbus-service.js'
 
 const colorPicker = {
     props:['colors'],
@@ -11,11 +11,9 @@ const colorPicker = {
     `,
     methods:{
         hideColorPicker(){
-            console.log('yalla sogrim')
             this.$emit('hideColorPicker')
         },
         changeColor(color){
-            console.log('lets change color!',color)
             this.$emit('changeColor',color)
         },
         getClass(color){
@@ -24,11 +22,16 @@ const colorPicker = {
     },
 }
 
+
+//TO DO - Add duplicate functionality (eventBus to keep-app-cmp -> service)
+// Use this icon <i class="fas fa-copy"></i>
+
 export default {
     props:['note'],
     template:`
         <div class="note-controllers-container">
             <i class="fas fa-thumbtack" :title="pinTitle" @click.stop="pinNote(note)"></i>
+            <i class="fas fa-edit" title="Edit Note" @click.stop="editNote(note)"></i>
             <i class="fas fa-palette" title="Change color" @mouseover="showColorPicker=!showColorPicker" ></i>
             <i class="fas fa-trash" title="Delete note" @click.stop="deleteNote(note)"></i>
             <color-picker v-if="showColorPicker" @changeColor="changeColor" :colors="colors" @hideColorPicker="hideColorPicker"></color-picker>
@@ -41,20 +44,21 @@ export default {
         }
     },
     methods: {
+        editNote(note){
+            // console.log('editing note',note)
+            this.$emit('editNote',note)
+            eventBus.$emit(EVENT_EDITNOTE,note)
+        },
         hideColorPicker(){
-            console.log('copy that')
             this.showColorPicker = false;
         },
         deleteNote(note){
-            console.log('preview request:  delete this note',note)
             this.$emit('deleteNote',note)
         },
         pinNote(note){
-            console.log('pin this note',note)
             this.$emit('pinNote',note)
         },
         changeColor(color){
-            console.log('lets2 change color!',color)
             this.$emit('changeColor',color)
         },
     },
@@ -64,9 +68,8 @@ export default {
         }
     },
     components:{
-        colorPicker
+        colorPicker,
+        eventBus
     },
-    // destroyed(){
-    //     this.showColorPicker = false;
-    // }
+ 
 }

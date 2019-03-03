@@ -2,7 +2,7 @@ import noteService from '../services/note-service.js'
 import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import addNote from '../cmps/note-add-cmp.js'
-import localStorageService from '../services/local-storage-service.js';
+import {eventBus, EVENT_EDITNOTE } from '../../../services/eventbus-service.js';
 
 export default {
     template: `
@@ -11,8 +11,9 @@ export default {
         <note-filter class="note-filter" @filtered="setFilter"></note-filter>
 
         <div class="add-note-container flex center-all">
-            <input @click="toggleAddNote" placeholder="Take a note" v-if="!showAddNote" class="take-a-note" > 
+            <input  @click="toggleAddNote" placeholder="Take a note" v-if="!showAddNote" class="take-a-note" > 
             <add-note 
+                :note="noteToEdit"
                 v-show="showAddNote"
                 @hideAddNote="hideAddNote"
                 @newnote="addNote">
@@ -35,45 +36,80 @@ export default {
                 txt: '',
             },
             selectedNotes: [],
+            noteToEdit : null,
+            isEditNote: null,
             searchTerm: '',
             showAddNote: false,
+            showEditNote: false,
             showImgPrev: false,
             imgUrl: null,
-            // openFile: null,
         }
     },
     created() {
+        this.noteToEdit = this.getEmptyNote()
         document.title = 'Keep it'
-        if (localStorage.gNotes) {
-            console.log('fetching notes from local storage')
-            localStorageService.loadFromLocalStorage('gNotes')
-                .then(notes => this.notes = JSON.parse(notes))
-        } else {
-            console.log('fetching notes from dummy data')
-            noteService.getNotes()
-                .then(notes => this.notes = notes)
-        }
+        noteService.initNotes()
+        .then(gNotes => this.notes = gNotes)
+        eventBus.$on(EVENT_EDITNOTE, note=>{
+            // console.log('hopa! lets edit this', note);
+            this.noteToEdit = note
+            // console.log('puki',this.noteToEdit)
+            // setTimeout(() => {
+                this.editNote(note)
+                this.isEditNote = true
+            // }, 100);
+        })
+    },
+    watch: {
+        noteToEdit : function(){
+            console.log('noteToEdit has changed: ',this.noteToEdit)
+        } 
     },
     methods: {
+        getEmptyNote(){
+            let emptyNote = {
+                id : '', 
+                type : '',
+                isPinned : null,
+                dateCreated : null,
+                bgColor : '',
+                labels : [],
+                data : {
+                    subject : 'Title',
+                    body : 'Take a note',
+                    src: '',
+                }
+            }
+        return emptyNote
+        },
+        editNote(){
+            this.toggleAddNote()
+        },
         hideAddNote() {
             this.showAddNote = false;
         },
+    
         setFilter(filterBy) {
-            // console.log('noteApp Got Filter: ', filterBy);
             this.filterBy.txt = filterBy.txt;
         },
         getNote(note) {
             this.selectedNote = note
-            // console.log('selected note: ',this.selectedNote)
         },
         toggleAddNote() {
             this.showAddNote = !this.showAddNote;
         },
-        addNote(newNote) {
-            console.log('kawabanga!', newNote)
-            noteService.addNewNote(newNote)
-                .then(gNotes => localStorageService.saveToLocalStorage('gNotes',JSON.stringify(gNotes)))
-
+  
+        addNote(note) {
+            if (this.isEditNote === null) {
+                noteService.addNewNote(note)
+            } else {
+                console.log('should trigger an edit item service function')
+                noteService.editNote(note)
+                this.isEditNote = null;
+            }
+        },
+        saveNote(note){
+            console.log('saveNote!')
         }
     },
     computed: {
@@ -108,6 +144,7 @@ export default {
         noteService,
         noteList,
         noteFilter,
-        addNote
+        addNote,
+        eventBus
     }
 }
