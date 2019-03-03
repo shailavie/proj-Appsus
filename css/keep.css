@@ -84,23 +84,37 @@
 
 .note-filter {
     position: absolute;
-    top: 15px;
+    top: 105px;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
+
 .input-filter-by-text {
-    min-width: 100px;
-    width: auto;
+    width: 100vw;
     height: 15px;
     border-radius: 8px;
     padding: 20px;
-    border: 1px solid gray;
+    padding-left: 70px;
+    border:none;
     outline: none;
     font-size: 16px;
     font-family: 'Roboto';
     background-color: rgb(247, 241, 241);
     transition: .2s linear;
+}
+
+@media (min-width: 680px) {
+    .note-filter {
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translate(-50%, 0); 
+    }
+    .input-filter-by-text {
+        min-width: 40%;
+        width: 25em;
+    }
 }
 
 
@@ -196,12 +210,12 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 15px;
     color: rgba(46, 43, 43, 0.7);
     font-size: 16px;
 }
 .note-control-opt {
- 
+ height: 100%;
 }
 .note-control-opt:hover {
     color: rgba(201, 66, 133, 0.726);
@@ -273,7 +287,7 @@
 
   .note-add {
       background-color: whitesmoke;
-      width: 60%;
+      width: 40%;
       height: auto;
       padding: 20px;
       border-radius: 8px;
@@ -368,7 +382,7 @@
   .take-a-note {
       /* position: absolute; */
       transition: .3s ease;
-      min-width: 60%;
+      min-width: 40%;
       height: auto;
       border-radius: 8px;
       padding: 20px;
@@ -381,7 +395,12 @@
   }
 
   .add-note-container {
-      height: 80px;
+      height: 140px;
+  }
+  @media (min-width: 680px){
+    .add-note-container {
+        height: 80px;
+    }
   }
 
   .overlayer {
@@ -417,3 +436,10 @@
       margin-bottom: 20px;
     }
 
+.note-todo {
+    list-style-type: disc;
+    font-size: 16px;
+    padding-left: 5px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
