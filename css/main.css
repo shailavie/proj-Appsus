@@ -3,7 +3,6 @@
 @import url('./keep.css');
 @import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
 body {
     background-color: lightgreen;
 }
@@ -26,7 +25,7 @@ body {
 @media (min-width: 680px) {
     .app-header {
         min-height: 60px;
-    }    
+    }
 }
 
 .app-header h1 {
@@ -103,7 +102,9 @@ body {
     border: 1px solid rgb(7, 6, 6, 0.3);
 }
 
- 
+.filters-container {
+    width: 700px;
+}
 
 /* Footer */
 
@@ -179,12 +180,26 @@ footer {
 
 /* INBOX */
 
+@media (max-width: 680px) {
+    .e-app {
+        flex-direction: column;
+    }
+    .e-sidebar {
+        flex-direction: row;
+    }
+    .e-sidebar-btns {
+        flex-direction: column;
+    }
+    .e-sidebar-btn {
+        flex-direction: column;
+    }
+}
+
 button:hover {
     cursor: pointer;
 }
 
 .e-app {
-    background-color: white;
     display: flex;
     flex-grow: 1;
     font-family: Arial;
@@ -193,23 +208,33 @@ button:hover {
 .e-sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-end;
-    /* justify-content: space-evenly; */
-    background-color: rgb(171,212,241);
+    background-color: rgb(171, 212, 241);
     flex-basis: 15%;
     padding: 20px;
-    /* height: 250px; */
 }
 
 .e-sidebar-btns {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: left;
+    padding: 15px;
+    /* line-height: 80px; */
+}
+
+.e-sidebar-btn {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: left;
+    align-items: center;
+}
+
+.e-sidebar-btn span {
+    padding-left: 15px;
 }
 
 .e-main-emails {
-    /* flex-basis: 80%; */
     flex-grow: 1;
 }
 
@@ -237,12 +262,7 @@ button:hover {
     cursor: pointer;
 }
 
-li:nth-child(even) {
-    /* background: #cddbf2; */
-}
-
 .e-email-preview:hover {
-    /* background: #a0abbc; */
     transition: 0.3s;
     -webkit-box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow: 0px 1px 5px 0px rgba(50, 50, 50, 0.75);
@@ -273,23 +293,20 @@ li:nth-child(even) {
 
 .e-envlope-body-details {
     margin-bottom: 30px;
-    /* max-width: 100%; */
 }
 
 .e-envlope-details {
     flex-grow: 0.1;
 }
 
-.e-envlope-details-e {}
-
 .e-envlope-buttons button {
     color: grey;
-    opacity:0.7;
+    opacity: 0.7;
 }
 
 .e-envlope-buttons button:hover {
     color: black;
-    opacity:1;
+    opacity: 1;
     transition: 0.3s;
 }
 
@@ -303,6 +320,18 @@ li:nth-child(even) {
     padding-top: 12px;
 }
 
+.e-details {
+    padding: 10px;
+}
+
+.e-envlope-body-deatils {
+    padding: 10px;
+}
+
+.e-envlope-buttons-details {
+    padding: 10px;
+}
+
 /* COMPOSE */
 
 .e-compose {
@@ -310,6 +339,7 @@ li:nth-child(even) {
     flex-direction: column;
     background-color: white;
     width: 100%;
+    font-size: 1.8em;
 }
 
 a {
@@ -370,7 +400,11 @@ textarea:focus, input:focus {
 .flex-btns {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    /* padding: 10px; */
+}
+
+.flex-btns i {
+    margin-right: 10px;
 }
 
 /* END OF EMAIL */

@@ -2,13 +2,13 @@ import emailService from '../services/email-service.js';
 
 export default {
     template: `
-                <div class="e-envlope" v-if="email">
-                    <div class="e-envlope-details column">
+                <div class="e-details" v-if="email">
+                    <div class="e-envlope-details">
                     <h1>{{email.subject}}</h1>
                     <span class="unread">{{email.name}}</span>
                     <span class="grey">&nbsp;<{{email.from}}></span>
                     </div>
-                    <div class="e-envlope-buttons">
+                    <div class="e-envlope-buttons-details">
                         <button title="Mark As Unread" @click.stop="markAsUnread(email)"><i class="fas fa-envelope"></i></button>
                         <button @click="deleteEmail(email)"><i class="fas fa-trash"></i></button>
                         <button title="Reply" @click="reaplyMail"><i class="fas fa-reply"></i></button>

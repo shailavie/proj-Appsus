@@ -13,15 +13,21 @@ export default {
             Unread: {{unreadCount}} / {{emailsCount}}
                 <email-progress :emails="emailsToShow"></email-progress>
                 <div class="e-sidebar-btns">
-                    <router-link to="/email/compose">
-                        <i class="fas fa-plus-circle fa-2x"></i><span class="e-compose-txt">Compose</span>
-                    </router-link>
-                    <router-link to="/email/">
-                    <i class="fas fa-inbox fa-2x"></i><span class="e-compose-txt">Inbox</span>
-                    </router-link> 
-                    <router-link to="/email/sent">
-                        <i class="fas fa-share-square fa-2x"></i><span class="e-compose-txt">Sent Mail</span>
-                    </router-link> 
+                    <div class="e-sidebar-btn">
+                        <router-link to="/email/compose">
+                            <i class="fas fa-plus-circle fa-2x"></i><span class="e-compose-txt">Compose</span>
+                        </router-link>
+                    </div>
+                    <div class="e-sidebar-btn">
+                        <router-link to="/email/">
+                        <i class="fas fa-inbox fa-2x"></i><span class="e-compose-txt">Inbox</span>
+                        </router-link> 
+                    </div>
+                    <div class="e-sidebar-btn">
+                        <router-link to="/email/sent">
+                            <i class="fas fa-share-square fa-2x"></i><span class="e-compose-txt">Sent Mail</span>
+                        </router-link> 
+                    </div>
                 </div>    
             </div>
 
