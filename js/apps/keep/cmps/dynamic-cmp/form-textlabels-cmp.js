@@ -5,7 +5,6 @@ export default {
     template: `
         <div class="row">
                 <input type="text" 
-              
                 v-model=data.value
                 :placeholder=data.placeholder
                 @blur="reportVal" 
@@ -20,13 +19,15 @@ export default {
     },
     methods: { 
         reportVal() {
-            this.$emit('setInput', { [this.data.for]: this.data.value })
+            let res = this.data.value.split(',')
+            console.log('got',res)
+            console.log(this.data.for)
+            this.$emit('setInput', { [this.data.for]: res })
         }
     },
     created(){
         eventBus.$on(EVENT_EDITNOTE, val => {
-            console.log('hopa! lets edit this', val.data.subject);
-            this.$set(this.data, 'value', val.data.subject)
+            this.$set(this.data, 'value', val.labels)
         })
     },
     components: {

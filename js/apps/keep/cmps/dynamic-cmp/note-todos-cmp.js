@@ -18,13 +18,13 @@ export default {
                     </h3>
                     <p>
                         <!-- {{note.data.body}} -->
-                        <p 
-                            v-for="(currTodo, idx) in note.data.body"
+                        <ul 
+                            v-for="(currTodo, idx) in note.data.todos"
                             :key="currTodo"
                             >
-                            {{note.data.body[idx]}}
+                            {{note.data.todos[idx]}}
                             <!-- {{todoToShow(note.data.body[idx])}} -->
-                        </p>
+                        </ul>
                         <highlight   
                                 :msg="note.data.body" 
                                 :search="search" 

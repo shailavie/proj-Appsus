@@ -28,18 +28,19 @@ var dummyNotes = [
             body: '052-8985898',
         }
     },
-    // {
-    //     id: makeId(),
-    //     type: 'noteTodos',
-    //     isPinned: false,
-    //     dateCreated: new Date(),
-    //     bgColor: 'white',
-    //     labels: ['must get sleep'],
-    //     data: {
-    //         subject: 'Don\'t forget',
-    //         body : ['Sleep','Learn Vue','Call mom']
-    //     }
-    // },
+    {
+        id: makeId(),
+        type: 'noteTodos',
+        isPinned: false,
+        dateCreated: new Date(),
+        bgColor: 'white',
+        labels: ['must get sleep'],
+        data: {
+            subject: 'Dont forget',
+            body : '',
+            todos : ['Sleep','Learn Vue','Call mom'],
+        }
+    },
     {
         id: makeId(),
         type: 'noteImg',
