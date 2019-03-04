@@ -4,7 +4,7 @@ import bookPreview from './book-preview-cmp.js';
 
 export default {
     template: `
-            <transition-group tag='div' class='book-list'>
+        <transition-group tag='div' class='book-list'>
             <router-link 
                 :to="'/book/' + currBook.id" 
                 v-for="(currBook, idx) in books" 
@@ -19,7 +19,7 @@ export default {
                 </book-preview>
                 </router-link>
 
-           
+            <router-view></router-view>
 
         </transition-group>
     `,

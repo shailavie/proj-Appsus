@@ -6,9 +6,9 @@ import addReview from '../cmps/reviews/review-add-cmp.js'
 
 export default {
     template: `
-        <section v-if="book"  class="flex column middle">
+        <section v-if="book"  class="book-details-page flex column middle">
         <div class="book-details" >
-            <button @click="$router.go(-1)" class="back-btn">go back</button>
+            <button @click="$router.go(-1)" class="back-btn">Back</button>
             <div class="book-details-container">
                 <img class="book-preview-thumbnail-details" v-bind:src="imgUrl" />
                 <div class="book-details-preview">
@@ -27,7 +27,7 @@ export default {
             </div>
         </div>
         <book-review class="book-reviews-cmp" :book="bookToReview" ></book-review>
-        <button @click="toggleAddReview" v-if="!showAddReview" class="btn">Add a New Review</button>
+        <button @click="toggleAddReview" v-if="!showAddReview" class="btn-new-review">Add a New Review</button>
         <add-review v-if="showAddReview" :booktitle="book.title" @newreview="addReview"></add-review>
         </section> 
     `,

@@ -3,7 +3,7 @@ export default {
 
     template: `
         <div>
-            <progress :max="emailsCount" :value="counter"></progress>
+            <progress class="progress" :max="emailsCount" :value="counter"></progress>
         </div>
         `
         ,

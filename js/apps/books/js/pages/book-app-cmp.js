@@ -11,6 +11,7 @@ export default {
                 <book-list :books="booksToShow" @selected="getBook"></book-list>
                 <book-details v-if="selectedBook" :book="selectedBook"></book-details>
             </main>
+          
         </section> 
     `,
     data() {

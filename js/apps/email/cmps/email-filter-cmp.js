@@ -4,7 +4,7 @@ export default {
             <div class="filters-container">
                 
                 <!-- filter email by txt -->              
-                <input class="input-filter-by-text"
+                <input class="e-input-filter-by-text"
                     type="text" 
                     placeholder="Search for email" 
                     @keyup="emitFilter" 

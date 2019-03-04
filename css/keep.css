@@ -104,8 +104,18 @@
 .note-filter {
     position: absolute;
     top: 105px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    /* left: 50%;
+    transform: translate(-50%, 0); */
+    margin: 0 auto;
+    left: 0;
+}
+@media (min-width: 680px){
+    .note-filter {
+        position: absolute;
+        top: 105px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    } 
 }
 
 
@@ -114,7 +124,7 @@
     height: 15px;
     border-radius: 8px;
     padding: 20px;
-    padding-left: 70px;
+    
     border:none;
     outline: none;
     font-size: 16px;
@@ -133,6 +143,8 @@
     .input-filter-by-text {
         min-width: 40%;
         width: 25em;
+        margin-left: 170px;
+        padding: 20px;
     }
 }
 

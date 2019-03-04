@@ -10,14 +10,65 @@ body {
 
 .home-apps {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     flex-grow: 2;
     padding: 50px;
-    /* background-color: lightsalmon; */
+    width: 85%;
+    margin: 0 auto;
+}
+.creator-card ul {
+    margin-top: 30px;
+}
+.about-us {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
 }
 
+.e-input-filter-by-text {
+    width: 25em;
+    height: 15px;
+    border-radius: 8px;
+    padding: 20px;
+    border:none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Roboto';
+    background-color: rgb(247, 241, 241);
+    transition: .2s linear;
+}
+@media (min-width: 680px) {
+    .e-input-filter-by-text {
+     width: 100vw   
+    }
+}
+.creator-card {
+    background-color:whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 500px;
+    border-radius: 16px;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
+}
+.creator-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    filter: grayscale();
+    border: 8px solid white;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+}
+.creator-card p {
+    padding: 15px;
+    margin: 10 auto;
+    line-height: 22px;
+}
 .home-apps h2 {
     color: rgba(15, 15, 15, 0.849);
     font-family: 'Roboto';
@@ -39,19 +90,42 @@ body {
     width: 120px;
     height: 160px;
     background-color: whitesmoke;
-    margin: 20px;
     text-align: center;
     justify-content: center;
     display: flex;
     align-items: center;
     border-radius: 8px;
     transition: .5s ease;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
 }
 .app-container:hover {
     transform: translate(0, 5%);
     /* border: 1px solid rgb(104, 104, 194); */
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.25);
-    
+    /* box-shadow:0 0 10px rgba(0, 0, 0, 0.25); */
+}
+
+.app-container-nav {
+    width: 100px;
+    height: 130px;
+    background-color: whitesmoke;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: .5s ease;
+    /* box-shadow:0 0 10px rgba(0, 0, 0, 0.25); */
+}
+.app-container-nav:hover {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    background-color: rgba(255, 255, 255, 0.678);
+}
+.apps-container-nav {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
 }
 
 .apps-container {
@@ -63,7 +137,7 @@ body {
 }
 .appsus-app {
     background-color: white;
-    height: 100vh;
+    height: auto;
     font-family: 'Roboto'
 }
 
@@ -104,7 +178,7 @@ body {
 
 .nav-drawer nav {
     width: 250px;
-    height: auto;
+    /* height: 300px; */
     position: absolute;
     top: 60px;
     right: 0;
@@ -115,6 +189,7 @@ body {
     padding: 20px;
     flex-direction: row;
     transition: .3s ease;
+    display: flex;
 }
 
 .nb-link {
@@ -129,9 +204,7 @@ body {
     border: 1px solid transparent;
 }
 
-.nb-link:hover {
-    /* border: 1px solid rgb(196, 190, 190); */
-}
+
 
 .nb-link i {
     display: flex;
@@ -166,6 +239,17 @@ footer {
     height: 60px;
     background-color: white;
     border-top: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+footer h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(48, 44, 44, 0.836);
 }
 
 /* helpers */
@@ -242,7 +326,7 @@ footer {
         flex-direction: row;
     }
     .e-sidebar-btns {
-        flex-direction: column;
+        flex-direction: row;
     }
     .e-sidebar-btn {
         flex-direction: column;
@@ -257,6 +341,7 @@ button:hover {
     display: flex;
     flex-grow: 1;
     font-family: Arial;
+    height: 80vh;
 }
 
 .e-sidebar {
@@ -288,6 +373,9 @@ button:hover {
     padding-left: 15px;
 }
 
+.progress {
+    margin-top: 15px;
+}
 .e-main-emails {
     flex-grow: 1;
 }
@@ -416,6 +504,8 @@ a:focus {
     background-color: rgb(64, 64, 64);
     color: white;
     padding: 10px;
+    font-size: 18px;
+    line-height: 20px;
 }
 
 .e-form {
@@ -427,7 +517,7 @@ a:focus {
 .e-input {
     min-width: 98%;
     border: 0px;
-    padding: 2px;
+    padding: 10px;
 }
 
 .e-input:first-child {
@@ -449,6 +539,24 @@ textarea:focus, input:focus {
     position: relative;
     color: white;
     background-color: rgb(26, 115, 232);
+    margin: 20px;
+    width: 100px;
+    height: 45px;
+    border-radius: 8px;
+    font-family: 'Roboto';
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: .3s ease;
+}
+.send-btn:hover {
+    background-color: rgb(68, 139, 231);
+}
+.delete-email-btn {
+    margin: 20px !important;
+    transition: .3s ease;
+}
+.delete-email-btn:hover {
+    transform: rotate(23deg)
 }
 
 .flex-btns {
@@ -462,3 +570,37 @@ textarea:focus, input:focus {
 }
 
 /* END OF EMAIL */
+
+/*about us*/
+/* social links */
+
+ul.social-buttons {
+    margin-bottom: 0;
+}
+ul.social-buttons li a {
+    font-size: 20px;
+    line-height: 40px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: white;
+    border-radius: 100%;
+    outline: none;
+    background-color: #222222;
+}
+ul.social-buttons li a:active,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:hover {
+    background-color: #fed136;
+}
+
+ul.list-inline {
+    margin-bottom: 20px;
+    list-style-type: none;
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+}

@@ -14,7 +14,7 @@ export default {
             <textarea v-model="body" class="e-textarea"></textarea>
             <div class="flex-btns">
                 <button class="send-btn">SEND</button>
-                <i class="fas fa-trash" @click="deleteEmail"></i>
+                <i class="fas fa-trash delete-email-btn" @click="deleteEmail"></i>
             </div>
         </form>
     </div>
