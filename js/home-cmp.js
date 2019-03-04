@@ -26,7 +26,7 @@ export default {
             </div>
             <div class="about-us flex row space-between">
                 <div class="creator-card flex column center-all">
-                    <img class="creator-img" src="/img/sarel.jpg" />
+                    <img class="creator-img" src="https://sarelk.github.io/my-gallery/img/sarel.jpg" />
                     <h2>Sarel K</h2>
                     <p> 
                     A truly web geek since the days of 2007. Feel free to browse my projects (link below), 
@@ -54,7 +54,7 @@ export default {
 					</ul>               
                 </div>
                 <div class="creator-card flex column center-all">
-                    <img class="creator-img" src="/img/shai.jpg" />
+                    <img class="creator-img" src="https://shailavie.github.io/proj-myPortfolio/img/about/profile-pic.png" />
                     <h2>Shai L</h2>
                     <p>Product Marketing Manager with additional experience in product, UX and analysis. 
                         <br/>
