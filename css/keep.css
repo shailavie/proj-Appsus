@@ -487,6 +487,14 @@
     padding: 2px;
     cursor: pointer;
 }
+@media (max-width: 680px){
+    .close-btn {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 30px;
+    }   
+}
 
 .save-note-btn:hover, .close-btn:hover {
     background-color: lightgray;
