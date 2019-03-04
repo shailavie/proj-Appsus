@@ -2,7 +2,7 @@ import noteService from '../services/note-service.js'
 import noteList from '../cmps/note-list-cmp.js'
 import noteFilter from '../cmps/note-filter-cmp.js'
 import noteAdd from '../cmps/note-add-cmp.js'
-import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_DUPLICATE_NOTE } from '../../../services/eventbus-service.js';
+import { eventBus, EVENT_EDITNOTE, EVENT_CHANGE_NOTE_COLOR, EVENT_TOGGLE_PIN_NOTE, EVENT_DELETE_NOTE, EVENT_DUPLICATE_NOTE, EVENT_APP_CHANGE } from '../../../services/eventbus-service.js';
 
 export default {
     template: `
@@ -47,6 +47,7 @@ export default {
     created() {
         this.noteToEdit = this.getEmptyNote()
         document.title = 'Keep it'
+        eventBus.$emit(EVENT_APP_CHANGE,'Keep')
         noteService.initNotes()
             .then(gNotes => this.notes = gNotes)
         eventBus.$on(EVENT_EDITNOTE, note => {
@@ -66,6 +67,10 @@ export default {
         eventBus.$on(EVENT_DUPLICATE_NOTE, note => {
             noteService.duplicateNote(note)
         })
+    },
+    mounted(){
+        console.log( this.$refs )
+        // this.$refs.apptitle.innerText = 'Shai' 
     },
     watch: {
         noteToEdit: function () {

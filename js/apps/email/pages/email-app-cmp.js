@@ -1,5 +1,6 @@
 import emailService from '../services/email-service.js';
 import emailProgress from '../cmps/email-status-cmp.js';
+import { eventBus, EVENT_APP_CHANGE } from '../../../services/eventbus-service.js';
 
 export default {
     data() {
@@ -41,6 +42,7 @@ export default {
     `,
     created() {
         window.document.title = 'Email App'
+        eventBus.$emit(EVENT_APP_CHANGE,'Email')
         emailService.getEmails()
             .then(emails => this.emails = emails)
     },

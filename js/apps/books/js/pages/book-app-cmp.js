@@ -2,7 +2,8 @@ import bookService from '../services/book-service.js';
 import bookList from '../cmps/book-list-cmp.js';
 import bookFilter from '../cmps/book-filter-cmp.js';
 import bookDetails from './book-details-cmp.js'
- 
+import { eventBus, EVENT_APP_CHANGE } from '../../../../services/eventbus-service.js';
+
 {/* <book-filter @filtered="setFilter"></book-filter> */}
 export default {
     template: `
@@ -26,6 +27,8 @@ export default {
         }
     },
     created() {
+        window.document.title = 'Books App'
+        eventBus.$emit(EVENT_APP_CHANGE,'Books')
         console.log('fetching books')
         bookService.getBooks()
             .then(books => this.books = books)

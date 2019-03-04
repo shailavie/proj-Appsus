@@ -5,3 +5,4 @@ export const EVENT_TOGGLE_PIN_NOTE = 'togglePinNote';
 export const EVENT_DELETE_NOTE = 'deleteNote';
 export const EVENT_NOTE_TO_EMAIL = 'noteToEmail';
 export const EVENT_DUPLICATE_NOTE = 'duplicateNote';
+export const EVENT_APP_CHANGE = 'appChanged';

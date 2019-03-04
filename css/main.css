@@ -7,7 +7,10 @@
 body {
     background-color: lightgreen;
 }
-
+.app-title {
+    transition: .8s ease;
+    transition-delay: .3s;
+}
 .home-apps {
     display: flex;
     flex-direction: column;

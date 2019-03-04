@@ -1,4 +1,4 @@
-import { eventBus, EVENT_NOTE_TO_EMAIL } from './services/eventbus-service.js'
+import { eventBus, EVENT_NOTE_TO_EMAIL, EVENT_APP_CHANGE } from './services/eventbus-service.js'
 
 export default {
     template: `
@@ -93,6 +93,8 @@ export default {
         </div>
     </section>`,
     created() {
+        window.document.title = 'Appsus'
+        eventBus.$emit(EVENT_APP_CHANGE,'Appsus')
         eventBus.$on(EVENT_NOTE_TO_EMAIL, emailFromNote => {
             let url = `index.html#/email/compose/${emailFromNote.id}&${emailFromNote.subject}&${emailFromNote.body}`
             window.location = url
