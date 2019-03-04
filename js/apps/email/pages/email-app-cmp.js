@@ -14,18 +14,21 @@ export default {
                 <email-progress :emails="emailsToShow"></email-progress>
                 <div class="e-sidebar-btns">
                     <div class="e-sidebar-btn">
-                        <router-link to="/email/compose">
-                            <i class="fas fa-plus-circle fa-2x"></i><span class="e-compose-txt">Compose</span>
+                        <router-link class="e-sidebar-btn" to="/email/compose">
+                            <i class="fas fa-plus-circle fa-2x"></i>
+                            <div class="e-compose-txt">Compose</div>
                         </router-link>
                     </div>
                     <div class="e-sidebar-btn">
-                        <router-link to="/email/">
-                        <i class="fas fa-inbox fa-2x"></i><span class="e-compose-txt">Inbox</span>
+                        <router-link class="e-sidebar-btn" to="/email/">
+                        <i class="fas fa-inbox fa-2x"></i>
+                        <div class="e-compose-txt">Inbox</div>
                         </router-link> 
                     </div>
                     <div class="e-sidebar-btn">
-                        <router-link to="/email/sent">
-                            <i class="fas fa-share-square fa-2x"></i><span class="e-compose-txt">Sent Mail</span>
+                        <router-link class="e-sidebar-btn" to="/email/sent">
+                            <i class="fas fa-share-square fa-2x"></i>
+                            <div class="e-compose-txt">Sent Mail</div>
                         </router-link> 
                     </div>
                 </div>    
@@ -49,7 +52,7 @@ export default {
         },
         emailsCount() {
             if (!this.emailsToShow) return 0;
-            return this.emailsToShow.length;        
+            return this.emailsToShow.length;
         },
         unreadCount() {
             if (!this.emailsToShow) return 0;

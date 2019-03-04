@@ -6,7 +6,7 @@ export default {
             <progress class="progress" :max="emailsCount" :value="counter"></progress>
         </div>
         `
-        ,
+    ,
     computed: {
         counter() {
             if (!this.emails) return;
@@ -17,7 +17,7 @@ export default {
             return counter;
         },
         emailsCount() {
-            if (!this.emails) return;        
+            if (!this.emails) return;
             return this.emails.length;
         }
     },
