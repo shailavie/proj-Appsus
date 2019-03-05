@@ -33,7 +33,7 @@ var dummyNotes = [
         type: 'noteTodos',
         isPinned: false,
         dateCreated: new Date(),
-        bgColor: 'white',
+        bgColor: 'tomato',
         labels: ['must get sleep'],
         data: {
             subject: 'Dont forget',
@@ -178,9 +178,9 @@ var dummyNotes = [
     {
         id: makeId(),
         type: 'noteTxt',
-        isPinned: false,
+        isPinned: true,
         dateCreated: new Date(),
-        bgColor: 'white',
+        bgColor: 'LightGoldenRodYellow',
         labels: ['css', 'Asi', 'Sawsan4Life', 'התחלנו'],
         data: {
             subject: 'Nice course',
